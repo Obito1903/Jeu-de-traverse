@@ -3,9 +3,18 @@
  *  @version 0.1
  *  @date Fri 17 Apr 2020 12:14
  *
- *  @brief 
+ *  @brief Header du fichier main.c
  *
  */
+
+#ifndef __MAIN_H__
+/**
+*  @def __MAIN_H__
+*  Constante permettant de savoirs si le fichier à déjà été chargé.
+*/
+#define __MAIN_H__
+
+#include "jeu.h"
 
 /** 
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -20,3 +29,5 @@
  *
  */
 int main(int argc, char const *argv[]);
+
+#endif // __MAIN_H__

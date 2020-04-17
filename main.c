@@ -3,7 +3,7 @@
  *  @version 0.1
  *  @date Fri 17 Apr 2020 12:14
  *
- *  @brief 
+ *  @brief Fichier contenant le fonction main
  *
  */
 
