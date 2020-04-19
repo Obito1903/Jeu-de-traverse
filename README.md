@@ -2,6 +2,12 @@
 
 Mini projet "Jeu de traverse".
 
+## Compilation
+
+```shell
+gcc -Wall -Wextra -pedantic src/jeuBase.c src/affichage.c src/initJeu.c src/deplacement.c main.c -o jeu
+```
+
 ## Outils
 
 Quelques info sur les outils que je conseille d'utiliser durant ce projet
