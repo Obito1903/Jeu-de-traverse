@@ -95,7 +95,6 @@ void defZoneJoueur(partie *partie, int idJoueur)
 
 void initJoueur(partie *partie, int idJoueur)
 {
-    printf("initJoueur\n");
     defZoneJoueur(partie, idJoueur);
     initPions(partie, idJoueur);
 }

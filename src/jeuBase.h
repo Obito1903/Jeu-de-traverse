@@ -1,4 +1,4 @@
-/** @file jeu.h
+/** @file jeuBase.h
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
  *  @date Fri 17 Apr 2020 15:02
@@ -132,8 +132,9 @@ struct joueur
  */
 typedef struct
 {
-    /*!  */
-    pion ***plateau /*[TAILLEPLATEAU][TAILLEPLATEAU]*/;
+    /*! Plateau de jeu (tableau 2D d'adresse de pion) */
+    pion ***plateau;
+    /*! tableau de joueur */
     joueur *joueurs;
 } partie;
 

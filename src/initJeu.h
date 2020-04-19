@@ -62,6 +62,7 @@ void initPions(partie *partie, int idJoueur);
  *
  *  @brief Definie la couleur du joueur
  *
+ *  @param[in,out] partie : adresse de la partie
  *  @param[in] idJoueur : le numero du joueur
  *  @return Retourne le joueur avec ca couleur et zone defini;
  *
