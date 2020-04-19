@@ -14,7 +14,10 @@
 */
 #define __MAIN_H__
 
-#include "jeu.h"
+#include "src/jeuBase.h"
+#include "src/affichage.h"
+#include "src/initJeu.h"
+#include "src/deplacement.h"
 
 /** 
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>

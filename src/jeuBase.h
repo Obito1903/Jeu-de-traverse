@@ -24,13 +24,13 @@
 typedef enum
 {
     /*! Pion de type caree */
-    CAREE = '■',
+    CAREE = 254,
     /*! Pion de type triangle */
-    TRIANGLE = 'A',
+    TRIANGLE = 65,
     /*! Pion de type losange */
-    LOSANGE = 'L',
+    LOSANGE = 76,
     /*! Pion de type cercle */
-    CERCLE = 'O'
+    CERCLE = 79
 } typePion;
 
 /**
@@ -83,7 +83,7 @@ typedef struct
 */
 #define NBJOUEUR 2
 
-typedef joueur joueur;
+typedef struct joueur joueur;
 /**
  * @struct pion
  * Definit un pion
@@ -108,17 +108,17 @@ typedef struct
  * @struct joueur
  * Definit un joueur
  */
-typedef struct
+struct joueur
 {
     /*! Identifiant du joueur */
     int id;
     /*! Adresse vers le tableau contenant les pions du joueur */
-    pion pions[NBPIONS];
+    pion *pions;
     /*! Adresse vers le tableau contenant les pions du joueur */
     couleur couleur;
     /*! Permet de connaitre la zone d'arriver du joueur */
     facePlateau zoneArr;
-} joueur;
+};
 
 /**
 *  @def TAILLEPLATEAU
@@ -134,34 +134,7 @@ typedef struct
 {
     /*!  */
     pion *plateau[TAILLEPLATEAU][TAILLEPLATEAU];
-    joueur joueurs[NBJOUEUR];
+    joueur *joueurs;
 } partie;
-
-/** @fn void affichePlateau (pion **plateau)
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Fri 17 Apr 2020 15:37
- *
- *  @brief Permet d'afficher le plateau
- *
- *  @param[in] plateau : adresse du plateau à afficher
- * 
- */
-void affichePlateau(pion plateau[TAILLEPLATEAU][TAILLEPLATEAU]);
-
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Fri 17 Apr 2020 16:38
- *
- *  @brief place les pion du joueur a leurs emplacement d'origine sur le plateau
- *
- *  @param[in,out] partie : Adresse de la partie a modifier
- *  @param[in] idJoueur : id du Joueur auquel le pion appartient
- *  @param[in] idPion : id du pion a placer
- *  @param[in] coord : coordonées ou placer le pion
- *
- */
-void placePion(partie *partie, int idJoueur, int idPion, coord coord);
 
 #endif // __JEU_H__
