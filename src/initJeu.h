@@ -20,6 +20,18 @@
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
+ *  @date Sun 19 Apr 2020 17:30
+ *
+ *  @brief Alloue l'espace memoire pour une partie
+ *
+ *  @param[in,out] partie : adresse de la partie a alloué
+ *
+ */
+void allocPartie(partie *partie);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
  *  @date Fri 17 Apr 2020 17:27
  *
  *  @brief permet de savoir quel sera le type du pion qui sera placer à l'initialisation
@@ -54,9 +66,9 @@ void initPions(partie *partie, int idJoueur);
  *  @return Retourne le joueur avec ca couleur et zone defini;
  *
  */
-joueur defZoneJoueur(int idJoueur);
+void defZoneJoueur(partie *partie, int idJoueur);
 
-/** @fn void initJoueur (partie *partie, int idJoueur)
+/**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
  *  @date Fri 17 Apr 2020 17:39

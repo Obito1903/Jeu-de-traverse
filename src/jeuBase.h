@@ -133,7 +133,7 @@ struct joueur
 typedef struct
 {
     /*!  */
-    pion *plateau[TAILLEPLATEAU][TAILLEPLATEAU];
+    pion ***plateau /*[TAILLEPLATEAU][TAILLEPLATEAU]*/;
     joueur *joueurs;
 } partie;
 

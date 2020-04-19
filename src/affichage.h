@@ -16,7 +16,7 @@
 
 #include "jeuBase.h"
 
-/** @fn void affichePlateau (pion **plateau)
+/**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
  *  @date Fri 17 Apr 2020 15:37
@@ -26,6 +26,6 @@
  *  @param[in] plateau : adresse du plateau à afficher
  * 
  */
-void affichePlateau(pion *plateau[TAILLEPLATEAU][TAILLEPLATEAU]);
+void affichePlateau(pion ***plateau);
 
 #endif // __AFFICHAGE_H__
