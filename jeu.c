@@ -42,23 +42,92 @@ void affichePlateau(pion plateau[TAILLEPLATEAU][TAILLEPLATEAU])
     printf("╝");
 }
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Fri 17 Apr 2020 16:38
- *
- *  @brief place les pion du joueur a leurs emplacement d'origine sur le plateau
- *
- *  @param[in,out] partie : Adresse de la partie a modifier
- *  @param[in] idJoueur : id du Joueur auquel le pion appartient
- *  @param[in] idPion : id du pion a placer
- *  @param[in] coord : coordonées ou placer le pion
- *
- */
 void placePion(partie *partie, int idJoueur, int idPion, coord coord)
 {
     partie->joueurs[idJoueur].pions[idPion].coord = coord;
     partie->plateau[coord.x][coord.y] = &partie->joueurs[idJoueur].pions[idPion];
+}
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Fri 17 Apr 2020 17:27
+ *
+ *  @brief permet de savoir quel sera le type du pion qui sera placer à l'initialisation
+ *
+ *  @param[in] int_i : iterateur qui doit etre testé
+ *  @return retourne le type du pion qui
+ *
+ */
+typePion defTypePion(int int_i)
+{
+    typePion type; // Variable de retour
+    if (int_i == 0 || int_i == 7)
+    {
+        type = CAREE;
+    }
+    else if (int_i == 1 || int_i == 6)
+    {
+        type = TRIANGLE;
+    }
+    else if (int_i == 2 || int_i == 5)
+    {
+        type = LOSANGE;
+    }
+    else if (int_i == 3 || int_i == 4)
+    {
+        type = CERCLE;
+    }
+    return (type);
+}
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Fri 17 Apr 2020 17:14
+ *
+ *  @brief Place les pions du joueur a leur emplacement initiale
+ *
+ *  @param[in]
+ *
+ */
+void initPions(partie *partie, int idJoueur)
+{
+    int int_i;
+    coord coord;
+    pion pion;
+
+    if (partie->joueurs[idJoueur].zoneArr == NORD)
+    {
+        coord.y = TAILLEPLATEAU - 1;
+    }
+    else
+    {
+        coord.y = 0;
+    }
+
+    for (int_i = 0; int_i < 8; int_i++)
+    {
+        pion.joueur = &partie->joueurs[idJoueur];
+        pion.coord.x = int_i + 1;
+        pion.type = defTypePion(int_i);
+        placePion(partie, idJoueur, int_i, coord);
+        partie->joueurs[idJoueur].pions[int_i] = pion;
+    }
+}
+
+/** @fn void initJoueur (partie *partie, int idJoueur)
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Fri 17 Apr 2020 17:39
+ *
+ *  @brief initialise un joueur
+ *
+ *  @param[in]
+ *
+ */
+void initJoueur(partie *partie, int idJoueur)
+{
 }
 
 /**

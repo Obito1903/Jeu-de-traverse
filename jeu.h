@@ -83,6 +83,7 @@ typedef struct
 */
 #define NBJOUEUR 2
 
+typedef joueur joueur;
 /**
  * @struct pion
  * Definit un pion
@@ -147,5 +148,20 @@ typedef struct
  * 
  */
 void affichePlateau(pion plateau[TAILLEPLATEAU][TAILLEPLATEAU]);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Fri 17 Apr 2020 16:38
+ *
+ *  @brief place les pion du joueur a leurs emplacement d'origine sur le plateau
+ *
+ *  @param[in,out] partie : Adresse de la partie a modifier
+ *  @param[in] idJoueur : id du Joueur auquel le pion appartient
+ *  @param[in] idPion : id du pion a placer
+ *  @param[in] coord : coordonées ou placer le pion
+ *
+ */
+void placePion(partie *partie, int idJoueur, int idPion, coord coord);
 
 #endif // __JEU_H__
