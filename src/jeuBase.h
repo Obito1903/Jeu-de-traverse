@@ -66,6 +66,22 @@ typedef enum
 } couleur;
 
 /**
+ * @enum deplacement
+ * defini les type de deplacement possible
+ */
+typedef enum
+{
+    D_NORD,
+    D_NORD_EST,
+    D_EST,
+    D_SUD_EST,
+    D_SUD,
+    D_SUD_OUEST,
+    D_OUEST,
+    D_NORD_OUEST
+} deplacement;
+
+/**
  * @struct coord
  * Permet de stocker un coordonées en 2 dimensions
  */
@@ -136,6 +152,7 @@ typedef struct
     pion ***plateau;
     /*! tableau de joueur */
     joueur *joueurs;
+    joueur *joueurCourant;
 } partie;
 
 #endif // __JEU_H__

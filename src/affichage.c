@@ -51,3 +51,17 @@ void affichePlateau(pion ***plateau)
     }
     printf("═══╝\n");
 }
+
+void demandeDeplacement(partie *partie, pion *pion)
+{
+    printf("Quel direction ?\n 1-NORD\n 2-NORD EST\n 3-EST\n 4-SUD EST\n 5-SUD\n 6-SUD OUEST\n 7-OUEST\n 8-NORD OUEST\n");
+    deplacement direction = saisieInt() - 1;
+    switch (pion->type)
+    {
+    case CAREE:
+        deplaceCare(partie, pion, direction);
+        break;
+    default:
+        break;
+    }
+}

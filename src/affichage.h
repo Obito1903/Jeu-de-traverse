@@ -15,6 +15,8 @@
 #define __AFFICHAGE_H__
 
 #include "jeuBase.h"
+#include "lib/samIO.h"
+#include "deplacement.h"
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -27,5 +29,17 @@
  * 
  */
 void affichePlateau(pion ***plateau);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Mon 20 Apr 2020 14:32
+ *
+ *  @brief 
+ *
+ *  @param[in]
+ *
+ */
+void demandeDeplacement(partie *partie, pion *pion);
 
 #endif // __AFFICHAGE_H__

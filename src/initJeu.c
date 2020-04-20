@@ -68,7 +68,7 @@ void initPions(partie *partie, int idJoueur)
         coord.x = int_i + 1;
         pion.type = defTypePion(int_i);
         partie->joueurs[idJoueur].pions[int_i] = pion;
-        placePion(partie, idJoueur, int_i, coord);
+        placePion(partie, &partie->joueurs[idJoueur].pions[int_i], coord);
     }
 }
 
@@ -106,5 +106,6 @@ partie initPartie(void)
     initJoueur(&partie, 0);
     initJoueur(&partie, 1);
     printf("init terminer\n");
+    partie.joueurCourant = &partie.joueurs[0];
     return (partie);
 }

@@ -13,5 +13,8 @@ int main(int argc, char const *argv[])
 {
     partie partie = initPartie();
     affichePlateau(partie.plateau);
+    coord coord;
+    demandeDeplacement(&partie, &partie.joueurCourant->pions[0]);
+    affichePlateau(partie.plateau);
     return (0);
 }
