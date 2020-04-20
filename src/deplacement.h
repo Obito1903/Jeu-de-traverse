@@ -31,7 +31,7 @@
  */
 void placePion(partie *partie, pion *pion, coord coord);
 
-/** @fn void enlevePion (partie *partie, int idJoueur, int idPion)
+/**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
  *  @date Sun 19 Apr 2020 19:00
@@ -53,7 +53,7 @@ void enlevePion(partie *partie, pion *pion);
  *
  *  @param[in,out] partie : Adresse de la partie a modifier
  *  @param[in,out] pion : Adresse du pion a deplacer
- *  @param[in] coord : coordonées ou deplacer le pion
+ *  @param[in] coordArrive : coordonées ou deplacer le pion
  *
  */
 void deplacePionPlateau(partie *partie, pion *pion, coord coordArrive);
@@ -72,7 +72,36 @@ void deplacePionPlateau(partie *partie, pion *pion, coord coordArrive);
  */
 coord convertDirection(coord Origine, deplacement direction);
 
-/** @fn
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Mon 20 Apr 2020 15:02
+ *
+ *  @brief 
+ *
+ *  @param[in] Origine : emplacement a partir du quel le deplacement est realiser
+ *  @param[in] direction : direction a convertir
+ *  @return les coordonées correspondent
+ *
+ */
+coord convertDirection(coord Origine, deplacement direction);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Mon 20 Apr 2020 15:31
+ *
+ *  @brief Test si un saut est possible
+ *
+ *  @param[in,out] partie : Adresse de la partie
+ *  @param[in] coordTest : coordonée a tester
+ *  @param[in] direction : direction ou faire le test
+ *  @return 1 si le deplacement est possible dans cette direction, 0 sinon
+ *
+ */
+int sautPossible(partie *partie, coord coordTest, deplacement direction);
+
+/**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
  *  @date Mon 20 Apr 2020 14:17

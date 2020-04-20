@@ -35,9 +35,10 @@ void affichePlateau(pion ***plateau);
  *  @version 0.1
  *  @date Mon 20 Apr 2020 14:32
  *
- *  @brief 
+ *  @brief Demande a l'utilisateur d'entre le deplacement a réaliser
  *
- *  @param[in]
+ *  @param[in,out] partie : Adresse de la partie
+ *  @param[in,out] pion : Adresse du pion a deplacer
  *
  */
 void demandeDeplacement(partie *partie, pion *pion);

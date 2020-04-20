@@ -27,18 +27,6 @@ void deplacePionPlateau(partie *partie, pion *pion, coord coordArrive)
     placePion(partie, pion, coordArrive);
 }
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Mon 20 Apr 2020 15:02
- *
- *  @brief 
- *
- *  @param[in] Origine : emplacement a partir du quel le deplacement est realiser
- *  @param[in] direction : direction a convertir
- *  @return les coordonées correspondent
- *
- */
 coord convertDirection(coord Origine, deplacement direction)
 {
     coord coord = Origine; // Variable de retour
@@ -65,17 +53,6 @@ coord convertDirection(coord Origine, deplacement direction)
     return (coord);
 }
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Mon 20 Apr 2020 15:31
- *
- *  @brief 
- *
- *  @param[in]
- *  @return
- *
- */
 int sautPossible(partie *partie, coord coordTest, deplacement direction)
 {
     coord coordSaut = convertDirection(coordTest, direction);
