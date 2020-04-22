@@ -10,6 +10,10 @@ gcc -Wall -Wextra -pedantic src/jeuBase.c src/affichage.c src/initJeu.c src/depl
 
 ## Implementation
 
+### Docs
+
+La documentation du projet est disponible [ici](https://obito.fr/docs/jeuTraversse/index.html).
+
 ### Wiki
 
 Le wiki dispinible [ici](Doc/wiki/Wiki.md) nous sert a expliqué comment chaque element du jeu est implementer.
