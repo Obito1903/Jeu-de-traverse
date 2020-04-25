@@ -5,7 +5,7 @@ Mini projet "Jeu de traverse".
 ## Compilation
 
 ```shell
-gcc -Wall -Wextra -pedantic src/jeuBase.c src/affichage.c src/initJeu.c src/deplacement.c main.c -o jeu
+gcc -Wall -Wextra -pedantic src/jeuBase.c src/affichage.c src/initJeu.c src/deplacement.c src/saut.c src/lib/samIO.c main.c -o jeu
 ```
 
 ## Implementation
