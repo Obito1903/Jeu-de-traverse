@@ -32,7 +32,6 @@ int intTest(int min, int max, char *txt)
 	int i_val;
 	do
 	{
-		system("clear");
 		printf("%s", txt);
 		ptSaisieInt(&i_val);
 	} while ((i_val < min) || (i_val > max));

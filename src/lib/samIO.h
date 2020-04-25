@@ -46,8 +46,8 @@ int intTest(int min, int max, char *txt);
  * @brief Création d'un macro variadic pour pouvoir avoir un nombre variable d'argument
  * 
  */
-#define varIntTest(i_val, min, max, txt, ...) , (min), (max), (txt)
-#define saisieIntTest(...) IntTest(varIntTest(__VA_ARGS__, "", ""))
+#define varIntTest(min, max, txt, ...) (min), (max), (txt)
+#define saisieIntTest(...) intTest(varIntTest(__VA_ARGS__, "", ""))
 
 /*! @fn void ptSaisieInt (int* i_resultat)
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>

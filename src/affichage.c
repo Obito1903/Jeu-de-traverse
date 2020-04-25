@@ -9,8 +9,9 @@
 
 #include "affichage.h"
 
-void affichePlateau(pion ***plateau)
+void affichePlateau(partie *partie)
 {
+    system("clear");
     int i_coordy;
     int i_coordx;
     printf("\n╔");
@@ -24,13 +25,13 @@ void affichePlateau(pion ***plateau)
         printf("║");
         for (i_coordx = 0; i_coordx < TAILLEPLATEAU; i_coordx++)
         {
-            if (plateau[i_coordx][i_coordy] != NULL)
+            if (partie->plateau[i_coordx][i_coordy] != NULL)
             {
-                printf(" \033[%dm%c\033[0m ║", plateau[i_coordx][i_coordy]->joueur->couleur, plateau[i_coordx][i_coordy]->type);
+                printf(" \033[%dm%c\033[0m ║", partie->plateau[i_coordx][i_coordy]->joueur->couleur, partie->plateau[i_coordx][i_coordy]->type);
             }
             else
             {
-                printf("   ║");
+                printf("\033[90m%d,%d\033[0m║", i_coordx, i_coordy);
             }
         }
         printf("\n");
@@ -50,18 +51,34 @@ void affichePlateau(pion ***plateau)
         printf("═══╩");
     }
     printf("═══╝\n");
+    printf("\033[%dmJoueur %d :\033[0m\n", partie->joueurCourant->couleur, partie->joueurCourant->id);
 }
 
-void demandeDeplacement(partie *partie, pion *pion)
+void demandeDeplacement(partie *partie, pion *pion, int estSaut)
 {
+    affichePlateau(partie);
+    if (estSaut)
+    {
+        printf("Un saut est disponible, Entré -1 si vous ne voulez pas sautez.\n");
+    }
     printf("Quel direction ?\n 1-NORD\n 2-NORD EST\n 3-EST\n 4-SUD EST\n 5-SUD\n 6-SUD OUEST\n 7-OUEST\n 8-NORD OUEST\n");
     deplacement direction = saisieInt() - 1;
-    switch (pion->type)
+    deplacementPion(partie, pion, direction, estSaut);
+}
+
+void selectionPion(partie *partie)
+{
+    affichePlateau(partie);
+    printf("Veuillez entrer  les coordonées du pion a deplacer :\n");
+    int x = saisieIntTest(0, 9, "x:");
+    int y = saisieIntTest(0, 9, "y:");
+    pion *pion = partie->plateau[x][y];
+    if (pion != NULL)
     {
-    case CAREE:
-        deplaceCare(partie, pion, direction);
-        break;
-    default:
-        break;
+        demandeDeplacement(partie, pion, 0);
+    }
+    else
+    {
+        selectionPion(partie);
     }
 }

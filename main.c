@@ -12,9 +12,20 @@
 int main(int argc, char const *argv[])
 {
     partie partie = initPartie();
-    affichePlateau(partie.plateau);
-    coord coord;
-    demandeDeplacement(&partie, &partie.joueurCourant->pions[0]);
-    affichePlateau(partie.plateau);
+
+    coord coordPion;
+    coordPion.x = 1;
+    coordPion.y = 8;
+    deplacePionPlateau(&partie, &partie.joueurCourant->pions[1], coordPion);
+    coordPion.x = 2;
+    coordPion.y = 7;
+    deplacePionPlateau(&partie, &partie.joueurCourant->pions[2], coordPion);
+
+    //affichePlateau(partie.plateau);
+    //demandeDeplacement(&partie, &partie.joueurCourant->pions[0], 0);
+
+    selectionPion(&partie);
+
+    affichePlateau(&partie);
     return (0);
 }

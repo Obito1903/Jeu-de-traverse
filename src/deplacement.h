@@ -16,6 +16,7 @@
 
 #include "jeuBase.h"
 #include "affichage.h"
+#include "saut.h"
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -63,7 +64,7 @@ void deplacePionPlateau(partie *partie, pion *pion, coord coordArrive);
  *  @version 0.1
  *  @date Mon 20 Apr 2020 15:02
  *
- *  @brief 
+ *  @brief Converti un direction en coordonées
  *
  *  @param[in] Origine : emplacement a partir du quel le deplacement est realiser
  *  @param[in] direction : direction a convertir
@@ -75,31 +76,18 @@ coord convertDirection(coord Origine, deplacement direction);
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
- *  @date Mon 20 Apr 2020 15:02
+ *  @date Sat 25 Apr 2020 20:13
  *
- *  @brief 
+ *  @brief Execute le deplacement
  *
- *  @param[in] Origine : emplacement a partir du quel le deplacement est realiser
- *  @param[in] direction : direction a convertir
- *  @return les coordonées correspondent
- *
- */
-coord convertDirection(coord Origine, deplacement direction);
-
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Mon 20 Apr 2020 15:31
- *
- *  @brief Test si un saut est possible
- *
- *  @param[in,out] partie : Adresse de la partie
- *  @param[in] coordTest : coordonée a tester
- *  @param[in] direction : direction ou faire le test
- *  @return 1 si le deplacement est possible dans cette direction, 0 sinon
+ *  @param[in,out] partie : Adresse de la partie a modifier
+ *  @param[in,out] pion : Adresse du pion a deplacer
+ *  @param[in] direction : direction vers ou deplacer le pion
+ *  @param[in] estSaut : boolean pour savoirs si le deplacement est un saut ou non
+ *  @return 1 si la pion a pu ce deplacer, 0 sinon
  *
  */
-int sautPossible(partie *partie, coord coordTest, deplacement direction);
+int executeDeplacement(partie *partie, pion *pion, deplacement direction, int estSaut);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -111,9 +99,74 @@ int sautPossible(partie *partie, coord coordTest, deplacement direction);
  *  @param[in,out] partie : Adresse de la partie a modifier
  *  @param[in,out] pion : Adresse du pion a deplacer
  *  @param[in] direction : direction vers ou deplacer le pion
+ *  @param[in] estSaut : boolean pour savoirs si le deplacement est un saut ou non
  *  @return 1 si la pion a pu ce deplacer, 0 sinon
  *
  */
-int deplaceCare(partie *partie, pion *pion, deplacement direction);
+int deplaceCare(partie *partie, pion *pion, deplacement direction, int estSaut);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Mon 20 Apr 2020 14:17
+ *
+ *  @brief gere le deplacement d'un pion Triangle
+ *
+ *  @param[in,out] partie : Adresse de la partie a modifier
+ *  @param[in,out] pion : Adresse du pion a deplacer
+ *  @param[in] direction : direction vers ou deplacer le pion
+ *  @param[in] estSaut : boolean pour savoirs si le deplacement est un saut ou non
+ *  @return 1 si la pion a pu ce deplacer, 0 sinon
+ *
+ */
+int deplaceTriangle(partie *partie, pion *pion, deplacement direction, int estSaut);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Mon 20 Apr 2020 14:17
+ *
+ *  @brief gere le deplacement d'un pion Losange
+ *
+ *  @param[in,out] partie : Adresse de la partie a modifier
+ *  @param[in,out] pion : Adresse du pion a deplacer
+ *  @param[in] direction : direction vers ou deplacer le pion
+ *  @param[in] estSaut : boolean pour savoirs si le deplacement est un saut ou non
+ *  @return 1 si la pion a pu ce deplacer, 0 sinon
+ *
+ */
+int deplaceLosange(partie *partie, pion *pion, deplacement direction, int estSaut);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Mon 20 Apr 2020 14:17
+ *
+ *  @brief gere le deplacement d'un pion Cercle
+ *
+ *  @param[in,out] partie : Adresse de la partie a modifier
+ *  @param[in,out] pion : Adresse du pion a deplacer
+ *  @param[in] direction : direction vers ou deplacer le pion
+ *  @param[in] estSaut : boolean pour savoirs si le deplacement est un saut ou non
+ *  @return 1 si la pion a pu ce deplacer, 0 sinon
+ *
+ */
+int deplaceCercle(partie *partie, pion *pion, deplacement direction, int estSaut);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Sat 25 Apr 2020 17:47
+ *
+ *  @brief deplace le pion en fonction de sont type
+ *
+ *  @param[in,out] partie : Adresse de la partie a modifier
+ *  @param[in,out] pion : Adresse du pion a deplacer
+ *  @param[in] direction : direction vers ou deplacer le pion
+ *  @param[in] estSaut : boolean pour savoirs si le deplacement est un saut ou non
+ *  @return 1 si la pion a pu ce deplacer, 0 sinon
+ *
+ */
+int deplacementPion(partie *partie, pion *pion, deplacement direction, int estSaut);
 
 #endif // __DEPLACEMENT_H__

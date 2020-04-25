@@ -17,6 +17,7 @@
 #include "jeuBase.h"
 #include "lib/samIO.h"
 #include "deplacement.h"
+#include "saut.h"
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -28,7 +29,7 @@
  *  @param[in] plateau : adresse du plateau à afficher
  * 
  */
-void affichePlateau(pion ***plateau);
+void affichePlateau(partie *partie);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -41,6 +42,18 @@ void affichePlateau(pion ***plateau);
  *  @param[in,out] pion : Adresse du pion a deplacer
  *
  */
-void demandeDeplacement(partie *partie, pion *pion);
+void demandeDeplacement(partie *partie, pion *pion, int estSaut);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Sat 25 Apr 2020 19:10
+ *
+ *  @brief Demande au joueur de selectioner le pion a deplacer
+ *
+ *  @param[in,out] partie : Adresse de la partie
+ *
+ */
+void selectionPion(partie *partie);
 
 #endif // __AFFICHAGE_H__
