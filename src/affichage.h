@@ -24,7 +24,7 @@
  *
  *  @brief Permet d'afficher le plateau
  *
- *  @param[in] plateau : adresse du plateau à afficher
+ *  @param[in] partie : adresse de la partie à afficher
  * 
  */
 void affichePlateau(partie *partie);
@@ -38,6 +38,7 @@ void affichePlateau(partie *partie);
  *
  *  @param[in,out] partie : Adresse de la partie
  *  @param[in,out] pion : Adresse du pion a deplacer
+ *  @param[in,out] estSaut : permet de savoir si les deplacement fait suite a un saut
  *
  */
 void demandeDeplacement(partie *partie, pion *pion, int estSaut);

@@ -99,6 +99,10 @@ typedef struct
 */
 #define NBJOUEUR 2
 
+/**
+ * @typedef joueur
+ * Defini le type joueur
+ */
 typedef struct joueur joueur;
 /**
  * @struct pion
@@ -134,7 +138,7 @@ struct joueur
     couleur couleur;
     /*! Permet de connaitre la zone d'arriver du joueur */
     facePlateau zoneArr;
-    /*!permet de connaitre le nombre de tours inactif*/
+    /*! Permet de connaitre le nombre de tours inactif*/
     int inactivite;
 };
 
@@ -154,7 +158,9 @@ typedef struct
     pion ***plateau;
     /*! tableau de joueur */
     joueur *joueurs;
+    /*! adresse ver le joueur courant */
     joueur *joueurCourant;
+    /*! numeros du tour */
     int tour;
 } partie;
 
@@ -259,6 +265,7 @@ void jouePartie(partie *partie);
  *  @brief Execute le bon mode de test
  *
  *  @param[in] mode : Mode a executer
+ *  @param[in,out] partie : Adresse de la partie
  *
  */
 void executeTest(int mode, partie *partie);
