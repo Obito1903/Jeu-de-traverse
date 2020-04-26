@@ -15,45 +15,6 @@
 #define __MAIN_H__
 
 #include "src/jeuBase.h"
-#include "src/affichage.h"
-#include "src/initJeu.h"
-#include "src/deplacement.h"
-
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Sat 25 Apr 2020 20:59
- *
- *  @brief execute un tour
- *
- *  @param[in,out] partie : Adresse de la partie
- *
- */
-void executeTour(partie *partie);
-
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Sat 25 Apr 2020 20:58
- *
- *  @brief change le joueur courant
- *
- *  @param[in,out] partie : Adresse de la partie
- *
- */
-void joueurSuivant(partie *partie);
-
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Sat 25 Apr 2020 20:55
- *
- *  @brief joue une partie
- *
- *  @param[in,out] partie : Adresse de la partie
- *
- */
-void jouePartie(partie *partie);
 
 /** 
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>

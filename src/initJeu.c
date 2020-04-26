@@ -97,6 +97,7 @@ void initJoueur(partie *partie, int idJoueur)
 {
     defZoneJoueur(partie, idJoueur);
     initPions(partie, idJoueur);
+    partie->joueurs[idJoueur].inactivite = 0;
 }
 
 partie initPartie(void)
@@ -107,5 +108,6 @@ partie initPartie(void)
     initJoueur(&partie, 1);
     printf("init terminer\n");
     partie.joueurCourant = &partie.joueurs[0];
+    partie.tour = 0;
     return (partie);
 }

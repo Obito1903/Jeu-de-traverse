@@ -15,7 +15,6 @@
 #define __SAUT_H__
 
 #include "jeuBase.h"
-#include "affichage.h"
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>

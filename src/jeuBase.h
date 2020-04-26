@@ -7,12 +7,12 @@
  *
  */
 
-#ifndef __JEU_H__
+#ifndef __JEUBASE_H__
 /**
-*  @def __JEU_H__
+*  @def __JEUBASE_H__
 *  Constante permettant de savoirs si le fichier à déjà été chargé.
 */
-#define __JEU_H__
+#define __JEUBASE_H__
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -40,13 +40,13 @@ typedef enum
 typedef enum
 {
     /*! Face nord plateau */
-    NORD,
+    NORD = 0,
     /*! Face sud du plateau */
-    SUD,
+    SUD = 9,
     /*! Face est du plateau */
-    EST,
+    EST = 9,
     /*! Face ouest du plateau */
-    OUEST
+    OUEST = 0
 } facePlateau;
 
 /**
@@ -134,6 +134,8 @@ struct joueur
     couleur couleur;
     /*! Permet de connaitre la zone d'arriver du joueur */
     facePlateau zoneArr;
+    /*!permet de connaitre le nombre de tours inactif*/
+    int inactivite;
 };
 
 /**
@@ -153,6 +155,72 @@ typedef struct
     /*! tableau de joueur */
     joueur *joueurs;
     joueur *joueurCourant;
+    int tour;
 } partie;
+
+#include "affichage.h"
+#include "deplacement.h"
+#include "saut.h"
+#include "initJeu.h"
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Sat 25 Apr 2020 20:59
+ *
+ *  @brief execute un tour
+ *
+ *  @param[in,out] partie : Adresse de la partie
+ *
+ */
+void executeTour(partie *partie);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Sat 25 Apr 2020 20:58
+ *
+ *  @brief change le joueur courant
+ *
+ *  @param[in,out] partie : Adresse de la partie
+ *
+ */
+void joueurSuivant(partie *partie);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Sat 25 Apr 2020 20:55
+ *
+ *  @brief joue une partie
+ *
+ *  @param[in,out] partie : Adresse de la partie
+ *
+ */
+void jouePartie(partie *partie);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Sun 26 Apr 2020 16:09
+ *
+ *  @brief Execute le bon mode de test
+ *
+ *  @param[in] mode : Mode a executer
+ *
+ */
+void executeTest(int mode, partie *partie);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Sun 26 Apr 2020 16:09
+ *
+ *  @brief Execute le bon mode de jeu
+ *
+ *  @param[in] mode : Mode a executer
+ *
+ */
+void executeMode(int mode);
 
 #endif // __JEU_H__

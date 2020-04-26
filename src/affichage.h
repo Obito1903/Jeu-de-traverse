@@ -14,10 +14,8 @@
 */
 #define __AFFICHAGE_H__
 
-#include "jeuBase.h"
 #include "lib/samIO.h"
-#include "deplacement.h"
-#include "saut.h"
+#include "jeuBase.h"
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -55,5 +53,38 @@ void demandeDeplacement(partie *partie, pion *pion, int estSaut);
  *
  */
 void selectionPion(partie *partie);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Sun 26 Apr 2020 16:12
+ *
+ *  @brief Affiche un menu pour choisir le mode de test
+ *
+ */
+void menuTest(partie *partie);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Sun 26 Apr 2020 16:06
+ *
+ *  @brief Affiche le menu qui permet de selectioner le mode de jeu
+ *
+ */
+void menuPrincipale(void);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Sun 26 Apr 2020 16:59
+ *
+ *  @brief Affiche le message de fin
+ *
+ *  @param[in,out] partie : Adresse de la partie
+ *  @param[in] etatFin : id de la fin a afficher
+ *
+ */
+void afficheFin(partie *partie, int etatFin);
 
 #endif // __AFFICHAGE_H__

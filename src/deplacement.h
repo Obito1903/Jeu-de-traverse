@@ -15,8 +15,7 @@
 #define __DEPLACEMENT_H__
 
 #include "jeuBase.h"
-#include "affichage.h"
-#include "saut.h"
+//#include "saut.h"
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
