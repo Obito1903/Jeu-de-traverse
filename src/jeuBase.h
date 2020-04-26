@@ -166,6 +166,58 @@ typedef struct
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
+ *  @date Sun 26 Apr 2020 15:56
+ *
+ *  @brief test si un des joueur à gagné
+ *
+ *  @param[in,out] partie : Adresse de la partie
+ *  @return 1 si le joueur à gagné, 0 sinon
+ *
+ */
+int testVictiore(partie *partie);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Sun 26 Apr 2020 17:09
+ *
+ *  @brief Test si les joueur son bient sorti de leurs zone de depart au 31eme tour
+ *
+ *  @param[in,out] partie : Adresse de la partie
+ *  @return 2 si le joueur à gagné, 0 sinon
+ *
+ */
+int testNumTour(partie *partie);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Sun 26 Apr 2020 18:01
+ *
+ *  @brief Test si un joueur est inactif
+ *
+ *  @param[in,out] partie : Adresse de la partie
+ *  @return 3 si le joueur à gagné, 0 sinon
+ *
+ */
+int testInactivite(partie *partie);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Sun 26 Apr 2020 17:04
+ *
+ *  @brief Test toute les condition de fin de partie
+ *
+ *  @param[in,out] partie : Adresse de la partie
+ *  @param[in,out] fin : Pointeur ver la valeur de fin
+ *
+ */
+void testFin(partie *partie, int *fin);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
  *  @date Sat 25 Apr 2020 20:59
  *
  *  @brief execute un tour

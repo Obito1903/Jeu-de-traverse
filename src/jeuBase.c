@@ -9,17 +9,6 @@
 
 #include "jeuBase.h"
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Sun 26 Apr 2020 15:56
- *
- *  @brief test si un des joueur a gagné
- *
- *  @param[in]
- *  @return
- *
- */
 int testVictiore(partie *partie)
 {
     int victoire = 1; // Variable de retour
@@ -36,17 +25,6 @@ int testVictiore(partie *partie)
     return (victoire);
 }
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Sun 26 Apr 2020 17:09
- *
- *  @brief 
- *
- *  @param[in]
- *  @return
- *
- */
 int testNumTour(partie *partie)
 {
     int nonVide = 0; // Variable de retour
@@ -70,17 +48,6 @@ int testNumTour(partie *partie)
     return (nonVide);
 }
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Sun 26 Apr 2020 18:01
- *
- *  @brief Test si un joueur est inactif
- *
- *  @param[in]
- *  @return
- *
- */
 int testInactivite(partie *partie)
 {
     int estInactife = 0; // Variable de retour
@@ -93,17 +60,6 @@ int testInactivite(partie *partie)
     return (estInactife);
 }
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Sun 26 Apr 2020 17:04
- *
- *  @brief 
- *
- *  @param[in,out] partie : Adresse de la partie
- *  @param[in,out] fin : Pointeur ver la valeur de fin
- *
- */
 void testFin(partie *partie, int *fin)
 {
     *fin = testVictiore(partie);
