@@ -70,10 +70,10 @@ void demandeDeplacement(partie *partie, pion *pion, int estSaut)
 void selectionPion(partie *partie)
 {
     affichePlateau(partie);
-    printf("Veuillez entrer les coordonées du pion a deplacer (Entrer -1 pour passer le tour) :\n");
+    printf("Veuillez entrer les coordonées du pion a deplacer (Entrer -1 pour passer le tour, -2 pour sauvegarder et quitter) :\n");
     partie->joueurCourant->inactivite++;
-    int x = saisieIntTest(-1, 9, "x:");
-    if (x != -1)
+    int x = saisieIntTest(-2, 9, "x:");
+    if (x >= 0)
     {
         partie->joueurCourant->inactivite = 0;
         int y = saisieIntTest(0, 9, "y:");
@@ -87,6 +87,12 @@ void selectionPion(partie *partie)
             selectionPion(partie);
         }
     }
+    if (x == -2)
+    {
+        sauvegarde(partie);
+        fprintf(stdout, "Partie Sauvegarder");
+        exit(EXIT_SUCCESS);
+    }
 }
 void menuTest(partie *partie)
 {
@@ -98,8 +104,8 @@ void menuTest(partie *partie)
 void menuPrincipale(void)
 {
     printf("Bienvenue sur le jeu de traverse. Quel mode lancer ?\n");
-    printf("1 - Mode normal (2 Joueur)\n2 - Mode Test\n");
-    executeMode(saisieIntTest(1, 2));
+    printf("1 - Mode normal (2 Joueur)\n2 - Mode Test\n3 - Charge sav\n");
+    executeMode(saisieIntTest(1, 3));
 }
 
 void afficheFin(partie *partie, int etatFin)

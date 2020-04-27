@@ -136,7 +136,6 @@ void executeTest(int mode, partie *partie)
         break;
     }
 }
-
 void executeMode(int mode)
 {
     partie *partie;
@@ -149,6 +148,10 @@ void executeMode(int mode)
     case 2:
         partie = initPartie();
         menuTest(partie);
+        break;
+    case 3:
+        partie = chargeSav();
+        jouePartie(partie);
         break;
     default:
         break;

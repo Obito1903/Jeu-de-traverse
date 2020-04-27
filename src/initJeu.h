@@ -16,6 +16,8 @@
 
 #include "jeuBase.h"
 #include "deplacement.h"
+#include <sys/types.h>
+#include <sys/stat.h>
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -118,5 +120,29 @@ partie *initPartie(void);
  *
  */
 partie *copiePartie(partie *partieOriginal);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Mon 27 Apr 2020 18:35
+ *
+ *  @brief Sauvegarde la partie
+ *
+ *  @param[in] partie : la partie a sauvegarder
+ *
+ */
+void sauvegarde(partie *partie);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Mon 27 Apr 2020 18:59
+ *
+ *  @brief Charge une partie en memoire
+ *
+ *  @return La partie qui a était sauvegarder
+ *
+ */
+partie *chargeSav(void);
 
 #endif // __INITJEU_H__

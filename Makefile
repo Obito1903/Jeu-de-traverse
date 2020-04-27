@@ -30,6 +30,8 @@ saut.o: src/saut.c
 samIO.o: src/lib/samIO.c
 	$(CC) $(FLAGS) src/lib/samIO.c 
 
-
 clean:
+	rm -f $(OBJS)
+
+cleanall:
 	rm -f $(OBJS) $(OUT)

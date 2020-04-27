@@ -154,3 +154,54 @@ partie *copiePartie(partie *partieOriginal)
 
     return (partiCopie);
 }
+
+void sauvegarde(partie *partie)
+{
+    FILE *fichierSauv;
+    mkdir("./Savs", 0700);
+    fichierSauv = fopen("./Savs/sav.bin", "wb");
+    int int_joueur;
+    int int_pion;
+    fwrite(&partie->joueurCourant->id, sizeof(int), 1, fichierSauv);
+    fwrite(&partie->tour, sizeof(int), 1, fichierSauv);
+    for (int_joueur = 0; int_joueur < NBJOUEUR; int_joueur++)
+    {
+        fwrite(&partie->joueurs[int_joueur], sizeof(joueur), 1, fichierSauv);
+        for (int_pion = 0; int_pion < NBPIONS; int_pion++)
+        {
+            fwrite(&partie->joueurs[int_joueur].pions[int_pion], sizeof(pion), 1, fichierSauv);
+        }
+    }
+}
+
+partie *chargeSav(void)
+{
+    partie *partie = allocPartie(); // Variable de retour
+    FILE *fichierSauv;
+
+    fichierSauv = fopen("./Savs/sav.bin", "rb");
+    int idJoueurCourant;
+    fread(&idJoueurCourant, sizeof(int), 1, fichierSauv);
+    partie->joueurCourant = &partie->joueurs[idJoueurCourant];
+
+    fread(&partie->tour, sizeof(int), 1, fichierSauv);
+
+    int int_joueur;
+    int int_pion;
+    for (int_joueur = 0; int_joueur < NBJOUEUR; int_joueur++)
+    {
+        pion *tmp = partie->joueurs[int_joueur].pions;
+        fread(&partie->joueurs[int_joueur], sizeof(joueur), 1, fichierSauv);
+        partie->joueurs[int_joueur].pions = tmp;
+        free(tmp);
+
+        for (int_pion = 0; int_pion < NBPIONS; int_pion++)
+        {
+            fread(&partie->joueurs[int_joueur].pions[int_pion], sizeof(pion), 1, fichierSauv);
+            partie->joueurs[int_joueur].pions[int_pion].joueur = &partie->joueurs[int_joueur];
+            placePion(partie, &partie->joueurs[int_joueur].pions[int_pion], partie->joueurs[int_joueur].pions[int_pion].coord);
+        }
+    }
+
+    return (partie);
+}
