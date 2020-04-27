@@ -78,7 +78,7 @@ void selectionPion(partie *partie)
         partie->joueurCourant->inactivite = 0;
         int y = saisieIntTest(0, 9, "y:");
         pion *pion = partie->plateau[x][y];
-        if (pion != NULL)
+        if ((pion != NULL) && (&pion->joueur->id == &partie->joueurCourant->id))
         {
             demandeDeplacement(partie, pion, 0);
         }
