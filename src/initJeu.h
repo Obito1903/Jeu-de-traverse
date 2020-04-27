@@ -27,7 +27,19 @@
  *  @param[in,out] partie : adresse de la partie a alloué
  *
  */
-void allocPartie(partie *partie);
+partie *allocPartie();
+
+/*
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Mon 27 Apr 2020 17:48
+ *
+ *  @brief Libere l'espace memoire occupé par une partie
+ *
+ *  @param[in,out] partie : adresse de la partie a liberer
+ *
+ */
+void freePartie(partie *partie);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -92,6 +104,19 @@ void initJoueur(partie *partie, int idJoueur);
  *  @return Le plateau de jeux
  *
  */
-partie initPartie(void);
+partie *initPartie(void);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Mon 27 Apr 2020 18:03
+ *
+ *  @brief Crée un copie de la partie
+ *
+ *  @param[in] partieOriginal : la partie a copier
+ *  @return la copie de la partie entré en parametre
+ *
+ */
+partie *copiePartie(partie *partieOriginal);
 
 #endif // __INITJEU_H__

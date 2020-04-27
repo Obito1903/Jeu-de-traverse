@@ -9,8 +9,9 @@
 
 #include "initJeu.h"
 
-void allocPartie(partie *partie)
+partie *allocPartie()
 {
+    partie *partie = malloc(sizeof(partie));
     partie->plateau = malloc(sizeof(pion **) * TAILLEPLATEAU);
     int int_x;
     for (int_x = 0; int_x < TAILLEPLATEAU; int_x++)
@@ -24,6 +25,27 @@ void allocPartie(partie *partie)
     {
         partie->joueurs[int_joueur].pions = malloc(sizeof(pion) * NBPIONS);
     }
+    return partie;
+}
+
+void freePartie(partie *partie)
+{
+    int int_pion;
+    int int_joueur;
+    for (int_joueur = 0; int_joueur < NBJOUEUR; int_joueur++)
+    {
+        for (int_pion = 0; int_pion < NBPIONS; int_pion++)
+        {
+            free(partie->joueurs[int_joueur].pions);
+        }
+    }
+    free(partie->joueurs);
+    int int_x;
+    for (int_x = 0; int_x < TAILLEPLATEAU; int_x++)
+    {
+        free(partie->plateau[int_x]);
+    }
+    free(partie);
 }
 
 typePion defTypePion(int int_i)
@@ -100,14 +122,35 @@ void initJoueur(partie *partie, int idJoueur)
     partie->joueurs[idJoueur].inactivite = 0;
 }
 
-partie initPartie(void)
+partie *initPartie(void)
 {
-    partie partie; // Variable de retour
-    allocPartie(&partie);
-    initJoueur(&partie, 0);
-    initJoueur(&partie, 1);
+    partie *partie = allocPartie(); // Variable de retour
+    initJoueur(partie, 0);
+    initJoueur(partie, 1);
     printf("init terminer\n");
-    partie.joueurCourant = &partie.joueurs[0];
-    partie.tour = 0;
+    partie->joueurCourant = &partie->joueurs[0];
+    partie->tour = 0;
     return (partie);
+}
+
+partie *copiePartie(partie *partieOriginal)
+{
+    partie *partiCopie = allocPartie();
+
+    int int_joueur;
+    int int_pion;
+    for (int_joueur = 0; int_joueur < NBJOUEUR; int_joueur++)
+    {
+        partiCopie->joueurs[int_joueur] = partieOriginal->joueurs[int_joueur];
+        for (int_pion = 0; int_pion < NBPIONS; int_pion++)
+        {
+            partiCopie->joueurs[int_joueur].pions[int_pion] = partieOriginal->joueurs[int_joueur].pions[int_pion];
+            partiCopie->joueurs[int_joueur].pions[int_pion].joueur = &partiCopie->joueurs[int_joueur];
+            placePion(partiCopie, &partiCopie->joueurs[int_joueur].pions[int_pion], partiCopie->joueurs[int_joueur].pions[int_pion].coord);
+        }
+    }
+    partiCopie->joueurCourant = &partiCopie->joueurs[partieOriginal->joueurCourant->id];
+    partiCopie->tour = partieOriginal->tour;
+
+    return (partiCopie);
 }

@@ -106,11 +106,10 @@ void jouePartie(partie *partie)
 
 void executeTest(int mode, partie *partie)
 {
+    int int_pion;
     switch (mode)
     {
     case 1:
-        *partie = initPartie();
-        int int_pion;
         for (int_pion = 0; int_pion < 8; int_pion++)
         {
             coord coordPion;
@@ -130,7 +129,6 @@ void executeTest(int mode, partie *partie)
         jouePartie(partie);
         break;
     case 2:
-        *partie = initPartie();
         partie->tour = 58;
         jouePartie(partie);
         break;
@@ -141,17 +139,19 @@ void executeTest(int mode, partie *partie)
 
 void executeMode(int mode)
 {
-    partie partie;
+    partie *partie;
     switch (mode)
     {
     case 1:
         partie = initPartie();
-        jouePartie(&partie);
+        jouePartie(partie);
         break;
     case 2:
-        menuTest(&partie);
+        partie = initPartie();
+        menuTest(partie);
         break;
     default:
         break;
     }
+    freePartie(partie);
 }
