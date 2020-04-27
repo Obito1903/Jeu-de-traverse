@@ -2,10 +2,25 @@
 
 Mini projet "Jeu de traverse".
 
-## Compilation
+## Utilisation
+
+### Compilation
 
 ```shell
-gcc -Wall -Wextra -pedantic src/jeuBase.c src/affichage.c src/initJeu.c src/deplacement.c src/saut.c src/lib/samIO.c main.c -o jeu
+make all
+make clean
+```
+
+pour surpimer aussi l'executable
+
+```shell
+make cleanall
+```
+
+### Execution
+
+```shell
+./jeu
 ```
 
 ## Implementation
