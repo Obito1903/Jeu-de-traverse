@@ -180,6 +180,13 @@ partie *chargeSav(void)
     FILE *fichierSauv;
 
     fichierSauv = fopen("./Savs/sav.bin", "rb");
+
+    if (fichierSauv == NULL)
+    {
+        fprintf(stderr, "Le fichier de sauvegarde n'existe pas");
+        exit(EXIT_FAILURE);
+    }
+
     int idJoueurCourant;
     fread(&idJoueurCourant, sizeof(int), 1, fichierSauv);
     partie->joueurCourant = &partie->joueurs[idJoueurCourant];
