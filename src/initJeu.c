@@ -70,6 +70,56 @@ typePion defTypePion(int int_i)
     return (type);
 }
 
+void initDeplacementPion(pion *pion)
+{
+    int int_i;
+    switch (pion->type)
+    {
+    case TRIANGLE:
+        pion->coupsPossibles.nbCoup = 3;
+        pion->coupsPossibles.Coups = malloc(sizeof(deplacement) * 3);
+        if (pion->joueur->id == 0)
+        {
+            pion->coupsPossibles.Coups[0] = D_NORD_EST;
+            pion->coupsPossibles.Coups[1] = D_NORD_OUEST;
+            pion->coupsPossibles.Coups[2] = D_SUD;
+        }
+        else
+        {
+            pion->coupsPossibles.Coups[0] = D_SUD_EST;
+            pion->coupsPossibles.Coups[1] = D_SUD_OUEST;
+            pion->coupsPossibles.Coups[2] = D_NORD;
+        }
+        break;
+    case LOSANGE:
+        pion->coupsPossibles.nbCoup = 4;
+        pion->coupsPossibles.Coups = malloc(sizeof(deplacement) * 4);
+        pion->coupsPossibles.Coups[0] = D_SUD_EST;
+        pion->coupsPossibles.Coups[1] = D_SUD_OUEST;
+        pion->coupsPossibles.Coups[2] = D_NORD_EST;
+        pion->coupsPossibles.Coups[3] = D_NORD_OUEST;
+        break;
+    case CAREE:
+        pion->coupsPossibles.nbCoup = 4;
+        pion->coupsPossibles.Coups = malloc(sizeof(deplacement) * 4);
+        pion->coupsPossibles.Coups[0] = D_SUD;
+        pion->coupsPossibles.Coups[1] = D_OUEST;
+        pion->coupsPossibles.Coups[2] = D_EST;
+        pion->coupsPossibles.Coups[3] = D_NORD;
+        break;
+    case CERCLE:
+        pion->coupsPossibles.nbCoup = 8;
+        pion->coupsPossibles.Coups = malloc(sizeof(deplacement) * 8);
+        for (int_i = 0; int_i < 8; int_i++)
+        {
+            pion->coupsPossibles.Coups[int_i] = int_i;
+        }
+        break;
+    default:
+        break;
+    }
+}
+
 void initPions(partie *partie, int idJoueur)
 {
     int int_i;
@@ -89,6 +139,7 @@ void initPions(partie *partie, int idJoueur)
         pion.joueur = &(partie->joueurs[idJoueur]);
         coord.x = int_i + 1;
         pion.type = defTypePion(int_i);
+        initDeplacementPion(&pion);
         partie->joueurs[idJoueur].pions[int_i] = pion;
         placePion(partie, &partie->joueurs[idJoueur].pions[int_i], coord);
     }
@@ -206,6 +257,7 @@ partie *chargeSav(void)
         {
             fread(&partie->joueurs[int_joueur].pions[int_pion], sizeof(pion), 1, fichierSauv);
             partie->joueurs[int_joueur].pions[int_pion].joueur = &partie->joueurs[int_joueur];
+            initDeplacementPion(&partie->joueurs[int_joueur].pions[int_pion]);
             placePion(partie, &partie->joueurs[int_joueur].pions[int_pion], partie->joueurs[int_joueur].pions[int_pion].coord);
         }
     }

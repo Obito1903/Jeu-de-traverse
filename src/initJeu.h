@@ -59,6 +59,18 @@ typePion defTypePion(int int_i);
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
+ *  @date Wed 29 Apr 2020 16:20
+ *
+ *  @brief initialise les deplacement possible pour chaque pion
+ *
+ *  @param[in,out] pion : pion  a initialiser
+ *
+ */
+void initDeplacementPion(pion *pion);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
  *  @date Fri 17 Apr 2020 17:14
  *
  *  @brief Place les pions du joueur a leur emplacement initiale

@@ -82,6 +82,29 @@ typedef enum
 } deplacement;
 
 /**
+ * @struct listeCoupPossiblePion
+ * Liste des coup possible pour un pion
+ */
+typedef struct
+{
+    /*!  */
+    int nbCoup;
+    deplacement *Coups;
+} listeCoupPossiblePion;
+
+/**
+ * @struct listeCoupPossible
+ * liste les coup possible
+ */
+typedef struct
+{
+    /*! taille du tableau */
+    int taille;
+    /*! tableau contenant les coups possibles de chaque pion  */
+    listeCoupPossiblePion *Pions;
+} listeCoupPossible;
+
+/**
  * @struct coord
  * Permet de stocker un coordonées en 2 dimensions
  */
@@ -114,6 +137,8 @@ typedef struct
     joueur *joueur;
     /*! Type du pion */
     typePion type;
+    /*! Type du pion */
+    listeCoupPossiblePion coupsPossibles;
     /*! Coordonées du pion sur le plateau */
     coord coord;
 } pion;

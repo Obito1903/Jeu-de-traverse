@@ -87,82 +87,17 @@ int executeDeplacement(partie *partie, pion *pion, deplacement direction, int es
     return estDeplace;
 }
 
-int deplaceCare(partie *partie, pion *pion, deplacement direction, int estSaut)
-{
-    int estDeplace = 0;
-    if ((direction == D_NORD) || (direction == D_SUD) || (direction == D_EST) || (direction == D_OUEST))
-    {
-        estDeplace = executeDeplacement(partie, pion, direction, estSaut);
-    }
-
-    return estDeplace;
-}
-
-int deplaceTriangle(partie *partie, pion *pion, deplacement direction, int estSaut)
-{
-    int estDeplace = 0;
-    switch (pion->joueur->id)
-    {
-    case 0:
-        if ((direction == D_NORD_EST) || (direction == D_SUD) || (direction == D_NORD_OUEST))
-        {
-            estDeplace = executeDeplacement(partie, pion, direction, estSaut);
-        }
-        break;
-    case 1:
-        if ((direction == D_SUD_EST) || (direction == D_NORD) || (direction == D_NORD_OUEST))
-        {
-            estDeplace = executeDeplacement(partie, pion, direction, estSaut);
-        }
-        break;
-    default:
-        break;
-    }
-
-    return estDeplace;
-}
-
-int deplaceLosange(partie *partie, pion *pion, deplacement direction, int estSaut)
-{
-    int estDeplace = 0;
-    if ((direction == D_NORD_EST) || (direction == D_SUD_EST) || (direction == D_SUD_OUEST) || (direction == D_NORD_OUEST))
-    {
-        estDeplace = executeDeplacement(partie, pion, direction, estSaut);
-    }
-
-    return estDeplace;
-}
-
-int deplaceCercle(partie *partie, pion *pion, deplacement direction, int estSaut)
-{
-    int estDeplace = 0;
-    estDeplace = executeDeplacement(partie, pion, direction, estSaut);
-
-    return estDeplace;
-}
-
 int deplacementPion(partie *partie, pion *pion, deplacement direction, int estSaut)
 {
     int estDeplacer = 0; // Variable de retour
 
-    switch (pion->type)
+    int int_i;
+    for (int_i = 0; int_i < pion->coupsPossibles.nbCoup; int_i++)
     {
-    case CAREE:
-        estDeplacer = deplaceCare(partie, pion, direction, estSaut);
-        break;
-    case TRIANGLE:
-        estDeplacer = deplaceTriangle(partie, pion, direction, estSaut);
-        break;
-    case LOSANGE:
-        estDeplacer = deplaceLosange(partie, pion, direction, estSaut);
-        break;
-    case CERCLE:
-        estDeplacer = deplaceCercle(partie, pion, direction, estSaut);
-        break;
-    default:
-        printf("\033[91m /!\\Type de pion inconu./!\\ \033[0m\n");
-        getchar();
-        break;
+        if (direction == pion->coupsPossibles.Coups[int_i])
+        {
+            estDeplacer = executeDeplacement(partie, pion, direction, estSaut);
+        }
     }
 
     if (estDeplacer)
