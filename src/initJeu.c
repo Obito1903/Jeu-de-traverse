@@ -36,16 +36,28 @@ void freePartie(partie *partie)
     {
         for (int_pion = 0; int_pion < NBPIONS; int_pion++)
         {
-            free(partie->joueurs[int_joueur].pions);
+            printf("Free Coups possible pion %d, joueur %d\n", int_pion, int_joueur);
+            //free(partie->joueurs[int_joueur].pions[int_pion].coupsPossibles.Coups);
+            printf("Free Ok\n");
         }
+        printf("Free tab pion\n");
+        free(partie->joueurs[int_joueur].pions);
+        printf("Free Ok\n");
     }
+    printf("Free tab joueur\n");
     free(partie->joueurs);
+    printf("Free Ok\n");
     int int_x;
-    for (int_x = 0; int_x < TAILLEPLATEAU; int_x++)
+    printf("Free plateau\n");
+    for (int_x = 1; int_x < TAILLEPLATEAU; int_x++)
     {
         free(partie->plateau[int_x]);
     }
-    free(partie);
+    //free(partie->plateau);
+    printf("Free Ok\n");
+    printf("Free Partie general\n");
+    //free(partie);
+    printf("Free Ok\n");
 }
 
 typePion defTypePion(int int_i)
@@ -192,7 +204,10 @@ partie *copiePartie(partie *partieOriginal)
     int int_pion;
     for (int_joueur = 0; int_joueur < NBJOUEUR; int_joueur++)
     {
-        partiCopie->joueurs[int_joueur] = partieOriginal->joueurs[int_joueur];
+        partiCopie->joueurs[int_joueur].couleur = partieOriginal->joueurs[int_joueur].couleur;
+        partiCopie->joueurs[int_joueur].id = partieOriginal->joueurs[int_joueur].id;
+        partiCopie->joueurs[int_joueur].inactivite = partieOriginal->joueurs[int_joueur].inactivite;
+        partiCopie->joueurs[int_joueur].zoneArr = partieOriginal->joueurs[int_joueur].zoneArr;
         for (int_pion = 0; int_pion < NBPIONS; int_pion++)
         {
             partiCopie->joueurs[int_joueur].pions[int_pion] = partieOriginal->joueurs[int_joueur].pions[int_pion];

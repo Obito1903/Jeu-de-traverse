@@ -34,62 +34,6 @@ int sautPossible(partie *partie, coord coordTest, deplacement direction);
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
- *  @date Sat 25 Apr 2020 17:53
- *
- *  @brief test si il est possible pour un caré de sauté
- *
- *  @param[in,out] partie : Adresse de la partie
- *  @param[in,out] pion : Adresse du pion
- *  @return 1 si un saut est possible, 0 sinon
- *
- */
-int testSautPossibleCare(partie *partie, pion *pion);
-
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Sat 25 Apr 2020 17:53
- *
- *  @brief test si il est possible pour un Triangle de sauté
- *
- *  @param[in,out] partie : Adresse de la partie
- *  @param[in,out] pion : Adresse du pion
- *  @return 1 si un saut est possible, 0 sinon
- *
- */
-int testSautPossibleTriangle(partie *partie, pion *pion);
-
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Sat 25 Apr 2020 17:53
- *
- *  @brief test si il est possible pour un Losange de sauté
- *
- *  @param[in,out] partie : Adresse de la partie
- *  @param[in,out] pion : Adresse du pion
- *  @return 1 si un saut est possible, 0 sinon
- *
- */
-int testSautPossibleLosange(partie *partie, pion *pion);
-
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Sat 25 Apr 2020 17:53
- *
- *  @brief test si il est possible pour un Cercle de sauté
- *
- *  @param[in,out] partie : Adresse de la partie
- *  @param[in,out] pion : Adresse du pion
- *  @return 1 si un saut est possible, 0 sinon
- *
- */
-int testSautPossibleCercle(partie *partie, pion *pion);
-
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
  *  @date Sat 25 Apr 2020 18:24
  *
  *  @brief 

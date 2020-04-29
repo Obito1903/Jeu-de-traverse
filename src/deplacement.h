@@ -75,6 +75,20 @@ coord convertDirection(coord Origine, deplacement direction);
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
+ *  @date Wed 29 Apr 2020 17:07
+ *
+ *  @brief Test si le pion peut etre deplacer dans cette direction
+ *
+ *  @param[in] partie : Adresse de la partie
+ *  @param[in] coordTest : Coordonées a tester
+ *  @return 1 si les coordonées son valide, 0 sinon
+ *
+ */
+int coordValide(partie *partie, coord coordTest);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
  *  @date Sat 25 Apr 2020 20:13
  *
  *  @brief Execute le deplacement

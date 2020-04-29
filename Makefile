@@ -1,6 +1,6 @@
-OBJS	= main.o jeuBase.o affichage.o initJeu.o deplacement.o saut.o samIO.o
-SOURCE	= main.c src/jeuBase.c src/affichage.c src/initJeu.c src/deplacement.c src/saut.c src/lib/samIO.c
-HEADER	= main.h src/jeuBase.h src/affichage.h src/initJeu.h src/deplacement.h src/saut.h src/lib/samIO.h
+OBJS	= main.o jeuBase.o affichage.o initJeu.o deplacement.o saut.o ai.o samIO.o
+SOURCE	= main.c src/jeuBase.c src/affichage.c src/initJeu.c src/deplacement.c src/saut.c src/ai.c src/lib/samIO.c
+HEADER	= main.h src/jeuBase.h src/affichage.h src/initJeu.h src/deplacement.h src/saut.h src/ai.h src/lib/samIO.h
 OUT	= jeu
 CC	 = gcc
 FLAGS	 = -g -c -Wall -Wextra -pedantic
@@ -26,6 +26,9 @@ deplacement.o: src/deplacement.c
 
 saut.o: src/saut.c
 	$(CC) $(FLAGS) src/saut.c 
+
+ai.o: src/ai.c
+	$(CC) $(FLAGS) src/ai.c 
 
 samIO.o: src/lib/samIO.c
 	$(CC) $(FLAGS) src/lib/samIO.c 

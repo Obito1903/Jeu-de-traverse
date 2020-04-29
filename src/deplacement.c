@@ -69,11 +69,23 @@ coord convertDirection(coord Origine, deplacement direction)
     return (coord);
 }
 
+int coordValide(partie *partie, coord coordTest)
+{
+    int estValide = 0; // Variable de retour
+
+    if ((coordTest.x < 10 && coordTest.x >= 0) && (coordTest.y < 10 && coordTest.y >= 0) && (partie->plateau[coordTest.x][coordTest.y] == NULL))
+    {
+        estValide = 1;
+    }
+
+    return (estValide);
+}
+
 int executeDeplacement(partie *partie, pion *pion, deplacement direction, int estSaut)
 {
     int estDeplace = 0;
     coord coordArrive = convertDirection(pion->coord, direction);
-    if ((partie->plateau[coordArrive.x][coordArrive.y] == NULL) && (estSaut == 0))
+    if (coordValide(partie, coordArrive) && (estSaut == 0))
     {
         deplacePionPlateau(partie, pion, coordArrive);
         estDeplace = 1;

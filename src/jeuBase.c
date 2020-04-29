@@ -104,9 +104,37 @@ void jouePartie(partie *partie)
     afficheFin(partie, fin);
 }
 
-void executeTest(int mode, partie *partie)
+void jouePartieOrdi(partie *partie)
+{
+    partie->joueurCourant = &(partie->joueurs[0]);
+    int fin = 0;
+    do
+    {
+        if (partie->joueurCourant->id == 1)
+        {
+            MinMax(partie, 3, 1);
+        }
+        else
+        {
+            executeTour(partie);
+        }
+        testFin(partie, &fin);
+        printf("inactivité: %d\n", partie->joueurCourant->inactivite);
+        if (!fin)
+        {
+            joueurSuivant(partie);
+            fin = 0;
+        }
+        partie->tour++;
+
+    } while (!fin);
+    afficheFin(partie, fin);
+}
+
+void executeTest(int mode, partie *partieTest)
 {
     int int_pion;
+    partie *partieCopie = copiePartie(partieTest);
     switch (mode)
     {
     case 1:
@@ -115,22 +143,30 @@ void executeTest(int mode, partie *partie)
             coord coordPion;
             coordPion.y = 0;
             coordPion.x = int_pion + 1;
-            deplacePionPlateau(partie, &(partie->joueurs[0].pions[int_pion]), coordPion);
+            deplacePionPlateau(partieTest, &(partieTest->joueurs[0].pions[int_pion]), coordPion);
             coordPion.y = 9;
-            placePion(partie, &(partie->joueurs[1].pions[int_pion]), coordPion);
+            placePion(partieTest, &(partieTest->joueurs[1].pions[int_pion]), coordPion);
             coordPion.y = 1;
             coordPion.x = 1;
-            deplacePionPlateau(partie, &(partie->joueurs[0].pions[0]), coordPion);
+            deplacePionPlateau(partieTest, &(partieTest->joueurs[0].pions[0]), coordPion);
             coordPion.y = 8;
             coordPion.x = 1;
-            deplacePionPlateau(partie, &(partie->joueurs[1].pions[0]), coordPion);
+            deplacePionPlateau(partieTest, &(partieTest->joueurs[1].pions[0]), coordPion);
         }
-        affichePlateau(partie);
-        jouePartie(partie);
+        affichePlateau(partieTest);
+        jouePartie(partieTest);
         break;
     case 2:
-        partie->tour = 58;
-        jouePartie(partie);
+        partieTest->tour = 58;
+        jouePartie(partieTest);
+        break;
+    case 3:
+        demandeDeplacement(partieTest, &partieTest->joueurCourant->pions[0], 0);
+        demandeDeplacement(partieCopie, &partieCopie->joueurCourant->pions[0], 0);
+        affichePlateau(partieCopie);
+        getchar();
+        affichePlateau(partieTest);
+
         break;
     default:
         break;
@@ -152,6 +188,10 @@ void executeMode(int mode)
     case 3:
         partie = chargeSav();
         jouePartie(partie);
+        break;
+    case 4:
+        partie = initPartie();
+        jouePartieOrdi(partie);
         break;
     default:
         break;

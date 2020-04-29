@@ -18,6 +18,24 @@
 #include <stdio.h>
 
 /**
+*  @def TAILLEPLATEAU
+*  Permet de connaitre la taille du plateau
+*/
+#define TAILLEPLATEAU 10
+
+/**
+*  @def NBPIONS
+*  Permet de connaitre le nombre de pions que doit posséder un joueur
+*/
+#define NBPIONS 8
+
+/**
+*  @def NBJOUEUR
+*  Permet de connaitre le joueurs
+*/
+#define NBJOUEUR 2
+
+/**
  * @enum typePion
  * Definit le type de chaque pion
  */
@@ -93,18 +111,6 @@ typedef struct
 } listeCoupPossiblePion;
 
 /**
- * @struct listeCoupPossible
- * liste les coup possible
- */
-typedef struct
-{
-    /*! taille du tableau */
-    int taille;
-    /*! tableau contenant les coups possibles de chaque pion  */
-    listeCoupPossiblePion *Pions;
-} listeCoupPossible;
-
-/**
  * @struct coord
  * Permet de stocker un coordonées en 2 dimensions
  */
@@ -115,12 +121,6 @@ typedef struct
     /*! coordonnée en y */
     int y;
 } coord;
-
-/**
-*  @def NBJOUEUR
-*  Permet de connaitre le joueurs
-*/
-#define NBJOUEUR 2
 
 /**
  * @typedef joueur
@@ -144,12 +144,6 @@ typedef struct
 } pion;
 
 /**
-*  @def NBPIONS
-*  Permet de connaitre le nombre de pions que doit posséder un joueur
-*/
-#define NBPIONS 8
-
-/**
  * @struct joueur
  * Definit un joueur
  */
@@ -166,12 +160,6 @@ struct joueur
     /*! Permet de connaitre le nombre de tours inactif*/
     int inactivite;
 };
-
-/**
-*  @def TAILLEPLATEAU
-*  Permet de connaitre la taille du plateau
-*/
-#define TAILLEPLATEAU 10
 
 /**
  * @struct partie
@@ -193,6 +181,7 @@ typedef struct
 #include "deplacement.h"
 #include "saut.h"
 #include "initJeu.h"
+#include "ai.h"
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>

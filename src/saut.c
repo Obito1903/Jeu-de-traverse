@@ -24,95 +24,22 @@ int sautPossible(partie *partie, coord coordTest, deplacement direction)
     return (sautPossible);
 }
 
-int testSautPossibleCare(partie *partie, pion *pion)
-{
-    int estPossible = 0; // Variable de retour
-    int int_direction = 0;
-    while ((int_direction < 8) && (estPossible != 1))
-    {
-        estPossible = sautPossible(partie, convertDirection(pion->coord, int_direction), int_direction);
-        int_direction = int_direction + 2;
-    }
-
-    return (estPossible);
-}
-
-int testSautPossibleTriangle(partie *partie, pion *pion)
-{
-    int estPossible = 0; // Variable de retour
-
-    if (pion->joueur->id == 0)
-    {
-        int int_direction = 1;
-        while ((int_direction < 8) && (estPossible != 1))
-        {
-            estPossible = sautPossible(partie, convertDirection(pion->coord, int_direction), int_direction);
-            int_direction = int_direction + 3;
-        }
-    }
-    else
-    {
-        int int_direction = 0;
-        while (((int_direction == 0) || (int_direction == 3) || (int_direction == 5)) && (estPossible != 1))
-        {
-            estPossible = sautPossible(partie, convertDirection(pion->coord, int_direction), int_direction);
-            int_direction++;
-        }
-    }
-
-    return (estPossible);
-}
-
-int testSautPossibleLosange(partie *partie, pion *pion)
-{
-    int estPossible = 0; // Variable de retour
-    int int_direction = 1;
-    while ((int_direction < 8) && (estPossible != 1))
-    {
-        estPossible = sautPossible(partie, convertDirection(pion->coord, int_direction), int_direction);
-        int_direction = int_direction + 2;
-    }
-
-    return (estPossible);
-}
-
-int testSautPossibleCercle(partie *partie, pion *pion)
-{
-    int estPossible = 0; // Variable de retour
-    int int_direction = 0;
-    while ((int_direction < 8) && (estPossible != 1))
-    {
-        estPossible = sautPossible(partie, convertDirection(pion->coord, int_direction), int_direction);
-        int_direction++;
-    }
-
-    return (estPossible);
-}
-
 int testSautPossiblePion(partie *partie, pion *pion)
 {
     int estPossible = 0; // Variable de retour
-
-    switch (pion->type)
+    int int_i;
+    unsigned int int_direction = 0;
+    while ((int_direction < 8) && (estPossible != 1))
     {
-    case CAREE:
-        estPossible = testSautPossibleCare(partie, pion);
-        break;
-    case TRIANGLE:
-        estPossible = testSautPossibleTriangle(partie, pion);
-        break;
-    case LOSANGE:
-        estPossible = testSautPossibleLosange(partie, pion);
-        break;
-    case CERCLE:
-        estPossible = testSautPossibleCercle(partie, pion);
-        break;
-
-    default:
-        printf("Type de pion inconu.\n");
-        break;
+        for (int_i = 0; int_i < pion->coupsPossibles.nbCoup; int_i++)
+        {
+            if (int_direction == pion->coupsPossibles.Coups[int_i])
+            {
+                estPossible = sautPossible(partie, convertDirection(pion->coord, int_direction), int_direction);
+            }
+        }
+        int_direction++;
     }
-
     return (estPossible);
 }
 

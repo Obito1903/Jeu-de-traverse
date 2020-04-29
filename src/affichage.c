@@ -60,11 +60,14 @@ void demandeDeplacement(partie *partie, pion *pion, int estSaut)
     affichePlateau(partie);
     if (estSaut)
     {
-        printf("Un saut est disponible, Entré -1 si vous ne voulez pas sautez.\n");
+        printf("Un saut est disponible, Entré 0 si vous ne voulez pas sautez.\n");
     }
     printf("Quel direction ?\n 1-NORD\n 2-NORD EST\n 3-EST\n 4-SUD EST\n 5-SUD\n 6-SUD OUEST\n 7-OUEST\n 8-NORD OUEST\n");
-    deplacement direction = saisieIntTest(1, 8) - 1;
-    deplacementPion(partie, pion, direction, estSaut);
+    int direction = saisieIntTest(0, 8);
+    if (direction > 0)
+    {
+        deplacementPion(partie, pion, direction - 1, estSaut);
+    }
 }
 
 void selectionPion(partie *partie)
@@ -98,14 +101,14 @@ void menuTest(partie *partie)
 {
     printf("Mode Test. Quel mode lancer ?\n");
     printf("1 - Test victoire\n2 - Test tour 30\n");
-    executeTest(saisieIntTest(1, 2), partie);
+    executeTest(saisieIntTest(1, 3), partie);
 }
 
 void menuPrincipale(void)
 {
     printf("Bienvenue sur le jeu de traverse. Quel mode lancer ?\n");
-    printf("1 - Mode normal (2 Joueur)\n2 - Mode Test\n3 - Charge sav\n");
-    executeMode(saisieIntTest(1, 3));
+    printf("1 - Mode normal (2 Joueur)\n2 - Mode Test\n3 - Charge sav\n4 - Jeu contre ordi\n");
+    executeMode(saisieIntTest(1, 4));
 }
 
 void afficheFin(partie *partie, int etatFin)
