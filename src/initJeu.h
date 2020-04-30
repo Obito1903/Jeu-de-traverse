@@ -43,7 +43,7 @@ partie *allocPartie();
 void freePartie(partie *partie);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Fri 17 Apr 2020 17:27
  *
@@ -56,7 +56,7 @@ void freePartie(partie *partie);
 typePion defTypePion(int int_i);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Wed 29 Apr 2020 16:20
  *
@@ -68,7 +68,7 @@ typePion defTypePion(int int_i);
 void initDeplacementPion(pion *pion);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Fri 17 Apr 2020 17:14
  *
@@ -81,7 +81,7 @@ void initDeplacementPion(pion *pion);
 void initPions(partie *partie, int idJoueur);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Sun 19 Apr 2020 16:42
  *
@@ -95,7 +95,7 @@ void initPions(partie *partie, int idJoueur);
 void defZoneJoueur(partie *partie, int idJoueur);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Fri 17 Apr 2020 17:39
  *
@@ -108,7 +108,7 @@ void defZoneJoueur(partie *partie, int idJoueur);
 void initJoueur(partie *partie, int idJoueur);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Fri 17 Apr 2020 16:27
  *

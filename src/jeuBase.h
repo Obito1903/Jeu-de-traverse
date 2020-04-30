@@ -185,7 +185,7 @@ typedef struct
 #include "ai.h"
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Sun 26 Apr 2020 15:56
  *
@@ -201,7 +201,7 @@ typedef struct
 int testVictiore(partie *pPartie);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Sun 26 Apr 2020 17:09
  *
@@ -214,7 +214,7 @@ int testVictiore(partie *pPartie);
 int testNumTour(partie *pPartie);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Sun 26 Apr 2020 18:01
  *
@@ -227,7 +227,7 @@ int testNumTour(partie *pPartie);
 int testInactivite(partie *pPartie);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Sun 26 Apr 2020 17:04
  *
@@ -240,7 +240,7 @@ int testInactivite(partie *pPartie);
 void testFin(partie *pPartie, int *i_fin);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Sat 25 Apr 2020 20:59
  *
@@ -252,7 +252,7 @@ void testFin(partie *pPartie, int *i_fin);
 void executeTour(partie *pPartie);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Sat 25 Apr 2020 20:58
  *
@@ -264,7 +264,7 @@ void executeTour(partie *pPartie);
 void joueurSuivant(partie *pPartie);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Sat 25 Apr 2020 20:55
  *
@@ -288,7 +288,7 @@ void jouePartie(partie *pPartie);
 void jouePartieOrdi(partie *pPartie);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Sun 26 Apr 2020 16:09
  *
@@ -300,7 +300,7 @@ void jouePartieOrdi(partie *pPartie);
 void executeTest(int i_Mode);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Sun 26 Apr 2020 16:09
  *

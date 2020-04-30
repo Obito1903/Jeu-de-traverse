@@ -18,7 +18,7 @@
 //#include "saut.h"
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Fri 17 Apr 2020 16:38
  *
@@ -32,7 +32,7 @@
 void placePion(partie *partie, pion *pion, coord coord);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Sun 19 Apr 2020 19:00
  *
@@ -45,7 +45,7 @@ void placePion(partie *partie, pion *pion, coord coord);
 void enlevePion(partie *partie, pion *pion);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Mon 20 Apr 2020 14:04
  *
@@ -73,7 +73,7 @@ void deplacePionPlateau(partie *partie, pion *pion, coord coordArrive);
 coord convertDirection(coord Origine, deplacement direction);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Wed 29 Apr 2020 17:07
  *
@@ -87,7 +87,7 @@ coord convertDirection(coord Origine, deplacement direction);
 int coordValide(partie *partie, coord coordTest);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Sat 25 Apr 2020 20:13
  *

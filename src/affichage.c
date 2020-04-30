@@ -1,5 +1,5 @@
 /** @file affichage.c
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Sun 19 Apr 2020 16:32
  *

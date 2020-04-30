@@ -1,5 +1,5 @@
 /** @file affichage.h
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Sun 19 Apr 2020 16:30
  *
@@ -18,7 +18,7 @@
 #include "jeuBase.h"
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Fri 17 Apr 2020 15:37
  *
@@ -30,7 +30,7 @@
 void affichePlateau(partie *pPartie);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Mon 20 Apr 2020 14:32
  *
@@ -44,7 +44,7 @@ void affichePlateau(partie *pPartie);
 void demandeDeplacement(partie *pPartie, pion *pPion, int bool_EstSaut);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Sat 25 Apr 2020 19:10
  *
@@ -56,7 +56,7 @@ void demandeDeplacement(partie *pPartie, pion *pPion, int bool_EstSaut);
 void selectionPion(partie *pPartie);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Sun 26 Apr 2020 16:12
  *
@@ -66,7 +66,7 @@ void selectionPion(partie *pPartie);
 void menuTest();
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Sun 26 Apr 2020 16:06
  *
@@ -76,7 +76,7 @@ void menuTest();
 void menuPrincipale(void);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Sun 26 Apr 2020 16:59
  *

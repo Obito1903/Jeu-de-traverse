@@ -103,7 +103,7 @@ tab *allocListeEval(void);
 Coup *creeTabCoup(listeCoupPossible *listeCoups, tab *listeEval);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Wed 29 Apr 2020 21:24
  *
@@ -116,7 +116,7 @@ Coup *creeTabCoup(listeCoupPossible *listeCoups, tab *listeEval);
 void ajouteListeCoup(listeCoupPossiblePion *listeCoupsPion, deplacement direction);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Wed 29 Apr 2020 15:50
  *
@@ -142,7 +142,7 @@ listeCoupPossible *coupsDisponible(partie *partie);
 void ajouteListeEval(tab *listeEval, int eval);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Wed 29 Apr 2020 22:08
  *
@@ -155,7 +155,7 @@ void ajouteListeEval(tab *listeEval, int eval);
 int indiceMaxEval(tab *listeEval);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Wed 29 Apr 2020 22:08
  *
@@ -168,7 +168,7 @@ int indiceMaxEval(tab *listeEval);
 int maxEval(tab *listeEval);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Wed 29 Apr 2020 22:08
  *

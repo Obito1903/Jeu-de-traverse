@@ -1,5 +1,5 @@
 /** @file saut.h
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Sat 25 Apr 2020 18:18
  *
@@ -17,7 +17,7 @@
 #include "jeuBase.h"
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Mon 20 Apr 2020 15:31
  *
@@ -32,7 +32,7 @@
 int testSautPossible(partie *partie, coord coordTest, deplacement direction);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Sat 25 Apr 2020 18:24
  *
@@ -46,7 +46,7 @@ int testSautPossible(partie *partie, coord coordTest, deplacement direction);
 int testSautPossiblePion(partie *partie, pion *pion);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Sat 25 Apr 2020 17:50
  *

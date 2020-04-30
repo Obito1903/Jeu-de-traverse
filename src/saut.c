@@ -1,5 +1,5 @@
 /** @file saut.c
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Sat 25 Apr 2020 18:18
  *
