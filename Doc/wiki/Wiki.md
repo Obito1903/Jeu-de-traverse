@@ -82,7 +82,7 @@ Nous avons donc découper le deplacement en 3 phases:
 
 Pour la premiere phase on demande donc au joueur de selectionner le pion à deplacer à l'aide de ses coordonées sur le plateau ainsi que d'indiqué la direction dans laquel il veut le deplacer.
 
-Une fois les informations nécéssaire connue on commence par calculé les coordonées d'arrivé. Pour cela nous avons implementer la fonction [`convertDirection()`](https://obito.fr/docs/jeuTraversse/deplacement_8c.html#aa2842b15e47848f014d2b1eb45adddc9) qui prend en parametre les coordonées actuel du pion ainsi que la direction dans laquel la direction qand laquel le deplacer (cf: [`deplacement`](file:///D:/Docs/EISTI/CPI1/Algo/C/Projets/jeu-de-traverse/Doxygen/html/jeuBase_8h.html#a6d4ffc154a40ec48a05a6ed74f2bb619)) et renvoie les coordonées ou le pion sera deplacer.
+Une fois les informations nécéssaire connue on commence par calculé les coordonées d'arrivé. Pour cela nous avons implementer la fonction [`convertDirection()`](https://obito.fr/docs/jeuTraversse/deplacement_8c.html#aa2842b15e47848f014d2b1eb45adddc9) qui prend en parametre les coordonées actuel du pion ainsi que la direction dans laquel la direction qand laquel le deplacer (cf: [`deplacement`](https://obito.fr/docs/jeuTraversse/jeuBase_8h.html#a6d4ffc154a40ec48a05a6ed74f2bb619)) et renvoie les coordonées ou le pion sera deplacer.
 
 Ensuite il nous faut verifier que les coordonées renvoyé sont valides pour ça on test si les coordonées renvoyé de pointe pas en dehors du plateau ou vers un case deja ocupé auquel que on redemandera d'entré les coordonées au joueur ou on initiera un saut si cela est possible.
 
