@@ -24,10 +24,10 @@
  *
  *  @brief Permet d'afficher le plateau
  *
- *  @param[in] partie : adresse de la partie à afficher
+ *  @param[in] pPartie : adresse de la partie à afficher
  * 
  */
-void affichePlateau(partie *partie);
+void affichePlateau(partie *pPartie);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -36,12 +36,12 @@ void affichePlateau(partie *partie);
  *
  *  @brief Demande a l'utilisateur d'entre le deplacement a réaliser
  *
- *  @param[in,out] partie : Adresse de la partie
- *  @param[in,out] pion : Adresse du pion a deplacer
- *  @param[in,out] estSaut : permet de savoir si les deplacement fait suite a un saut
+ *  @param[in,out] pPartie : Adresse de la partie
+ *  @param[in,out] pPion : Adresse du pion a deplacer
+ *  @param[in,out] bool_EstSaut : permet de savoir si les deplacement fait suite a un saut
  *
  */
-void demandeDeplacement(partie *partie, pion *pion, int estSaut);
+void demandeDeplacement(partie *pPartie, pion *pPion, int bool_EstSaut);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -50,10 +50,10 @@ void demandeDeplacement(partie *partie, pion *pion, int estSaut);
  *
  *  @brief Demande au joueur de selectioner le pion a deplacer
  *
- *  @param[in,out] partie : Adresse de la partie
+ *  @param[in,out] pPartie : Adresse de la partie
  *
  */
-void selectionPion(partie *partie);
+void selectionPion(partie *pPartie);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -61,9 +61,9 @@ void selectionPion(partie *partie);
  *  @date Sun 26 Apr 2020 16:12
  *
  *  @brief Affiche un menu pour choisir le mode de test
- *
+ * 
  */
-void menuTest(partie *partie);
+void menuTest();
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -82,10 +82,10 @@ void menuPrincipale(void);
  *
  *  @brief Affiche le message de fin
  *
- *  @param[in,out] partie : Adresse de la partie
- *  @param[in] etatFin : id de la fin a afficher
+ *  @param[in,out] pPartie : Adresse de la partie
+ *  @param[in] i_EtatFin : id de la fin a afficher
  *
  */
-void afficheFin(partie *partie, int etatFin);
+void afficheFin(partie *pPartie, int i_EtatFin);
 
 #endif // __AFFICHAGE_H__

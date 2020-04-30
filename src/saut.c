@@ -9,7 +9,7 @@
 
 #include "saut.h"
 
-int sautPossible(partie *partie, coord coordTest, deplacement direction)
+int testSautPossible(partie *partie, coord coordTest, deplacement direction)
 {
     coord coordSaut = convertDirection(coordTest, direction);
     int sautPossible = 0;
@@ -35,7 +35,7 @@ int testSautPossiblePion(partie *partie, pion *pion)
         {
             if (int_direction == pion->coupsPossibles.Coups[int_i])
             {
-                estPossible = sautPossible(partie, convertDirection(pion->coord, int_direction), int_direction);
+                estPossible = testSautPossible(partie, convertDirection(pion->coord, int_direction), int_direction);
             }
         }
         int_direction++;

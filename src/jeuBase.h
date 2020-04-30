@@ -117,8 +117,9 @@ typedef struct
  */
 typedef struct
 {
-    /*!  */
+    /*! Nombre de coups possible */
     int nbCoup;
+    /*! Tableau contenant les coups possibles */
     deplacement *Coups;
 } listeCoupPossiblePion;
 
@@ -188,13 +189,16 @@ typedef struct
  *  @version 0.1
  *  @date Sun 26 Apr 2020 15:56
  *
- *  @brief test si un des joueur à gagné
+ *  @brief test si un des joueurs à gagné
+ * 
+ * Test si le joueur courant de la partie a gagné
+ * (ie: Tous ces pions sont dans la zone adverse)
  *
- *  @param[in,out] partie : Adresse de la partie
- *  @return 1 si le joueur à gagné, 0 sinon
+ *  @param[in,out] pPartie : pointeur ver la partie
+ *  @return 1 si le joueur courant à gagné, 0 sinon
  *
  */
-int testVictiore(partie *partie);
+int testVictiore(partie *pPartie);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -203,11 +207,11 @@ int testVictiore(partie *partie);
  *
  *  @brief Test si les joueur son bient sorti de leurs zone de depart au 31eme tour
  *
- *  @param[in,out] partie : Adresse de la partie
+ *  @param[in,out] pPartie : Adresse de la partie
  *  @return 2 si le joueur à gagné, 0 sinon
  *
  */
-int testNumTour(partie *partie);
+int testNumTour(partie *pPartie);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -216,11 +220,11 @@ int testNumTour(partie *partie);
  *
  *  @brief Test si un joueur est inactif
  *
- *  @param[in,out] partie : Adresse de la partie
+ *  @param[in,out] pPartie : Adresse de la partie
  *  @return 3 si le joueur à gagné, 0 sinon
  *
  */
-int testInactivite(partie *partie);
+int testInactivite(partie *pPartie);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -229,11 +233,11 @@ int testInactivite(partie *partie);
  *
  *  @brief Test toute les condition de fin de partie
  *
- *  @param[in,out] partie : Adresse de la partie
- *  @param[in,out] fin : Pointeur ver la valeur de fin
+ *  @param[in,out] pPartie : Adresse de la partie
+ *  @param[in,out] i_fin : Pointeur ver la valeur de fin
  *
  */
-void testFin(partie *partie, int *fin);
+void testFin(partie *pPartie, int *i_fin);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -242,10 +246,10 @@ void testFin(partie *partie, int *fin);
  *
  *  @brief execute un tour
  *
- *  @param[in,out] partie : Adresse de la partie
+ *  @param[in,out] pPartie : Adresse de la partie
  *
  */
-void executeTour(partie *partie);
+void executeTour(partie *pPartie);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -254,10 +258,10 @@ void executeTour(partie *partie);
  *
  *  @brief change le joueur courant
  *
- *  @param[in,out] partie : Adresse de la partie
+ *  @param[in,out] pPartie : Adresse de la partie
  *
  */
-void joueurSuivant(partie *partie);
+void joueurSuivant(partie *pPartie);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -266,10 +270,22 @@ void joueurSuivant(partie *partie);
  *
  *  @brief joue une partie
  *
- *  @param[in,out] partie : Adresse de la partie
+ *  @param[in,out] pPartie : Adresse de la partie
  *
  */
-void jouePartie(partie *partie);
+void jouePartie(partie *pPartie);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Sat 25 Apr 2020 20:55
+ *
+ *  @brief joue une partie contre l'ordi
+ *
+ *  @param[in,out] pPartie : Adresse de la partie
+ *
+ */
+void jouePartieOrdi(partie *pPartie);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -278,11 +294,10 @@ void jouePartie(partie *partie);
  *
  *  @brief Execute le bon mode de test
  *
- *  @param[in] mode : Mode a executer
- *  @param[in,out] partie : Adresse de la partie
+ *  @param[in] i_Mode : Mode a executer
  *
  */
-void executeTest(int mode, partie *partie);
+void executeTest(int i_Mode);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -291,9 +306,9 @@ void executeTest(int mode, partie *partie);
  *
  *  @brief Execute le bon mode de jeu
  *
- *  @param[in] mode : Mode a executer
+ *  @param[in] i_Mode : Mode a executer
  *
  */
-void executeMode(int mode);
+void executeMode(int i_Mode);
 
 #endif // __JEU_H__

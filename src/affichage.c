@@ -9,7 +9,7 @@
 
 #include "affichage.h"
 
-void affichePlateau(partie *partie)
+void affichePlateau(partie *pPartie)
 {
     system("clear");
     int i_coordy;
@@ -25,9 +25,9 @@ void affichePlateau(partie *partie)
         printf("║");
         for (i_coordx = 0; i_coordx < TAILLEPLATEAU; i_coordx++)
         {
-            if (partie->plateau[i_coordx][i_coordy] != NULL)
+            if (pPartie->plateau[i_coordx][i_coordy] != NULL)
             {
-                printf(" \033[%dm%c\033[0m ║", partie->plateau[i_coordx][i_coordy]->joueur->couleur, partie->plateau[i_coordx][i_coordy]->type);
+                printf(" \033[%dm%c\033[0m ║", pPartie->plateau[i_coordx][i_coordy]->joueur->couleur, pPartie->plateau[i_coordx][i_coordy]->type);
             }
             else
             {
@@ -51,15 +51,15 @@ void affichePlateau(partie *partie)
         printf("═══╩");
     }
     printf("═══╝\n");
-    printf("Tour n°%d\n", partie->tour / 2);
-    printf("\033[%dmJoueur %d :\033[0m\n", partie->joueurCourant->couleur, partie->joueurCourant->id);
+    printf("Tour n°%d\n", pPartie->tour / 2);
+    printf("\033[%dmJoueur %d :\033[0m\n", pPartie->joueurCourant->couleur, pPartie->joueurCourant->id);
 }
 
-void demandeDeplacement(partie *partie, pion *pion, int estSaut)
+void demandeDeplacement(partie *pPartie, pion *pPion, int bool_EstSaut)
 {
-    affichePlateau(partie);
-    printf("\033[%dmPion %c(%d,%d)\033[0m\n", partie->joueurCourant->couleur, pion->type, pion->coord.x, pion->coord.y);
-    if (estSaut)
+    affichePlateau(pPartie);
+    printf("\033[%dmPion %c(%d,%d)\033[0m\n", pPartie->joueurCourant->couleur, pPion->type, pPion->coord.x, pPion->coord.y);
+    if (bool_EstSaut)
     {
         printf("Un saut est disponible, Entré 0 si vous ne voulez pas sautez.\n");
     }
@@ -67,7 +67,7 @@ void demandeDeplacement(partie *partie, pion *pion, int estSaut)
     int direction = saisieIntTest(0, 8);
     if (direction > 0)
     {
-        deplacementPion(partie, pion, direction - 1, estSaut);
+        deplacementPion(pPartie, pPion, direction - 1, bool_EstSaut);
     }
 }
 
@@ -98,36 +98,36 @@ void selectionPion(partie *partie)
         exit(EXIT_SUCCESS);
     }
 }
-void menuTest(partie *partie)
+void menuTest()
 {
     printf("Mode Test. Quel mode lancer ?\n");
     printf("1 - Test victoire\n2 - Test tour 30\n");
-    executeTest(saisieIntTest(1, 3), partie);
+    executeTest(saisieIntTest(1, 2));
 }
 
 void menuPrincipale(void)
 {
     printf("Bienvenue sur le jeu de traverse. Quel mode lancer ?\n");
-    printf("1 - Mode normal (2 Joueur)\n2 - Mode Test\n3 - Charge sav\n4 - Jeu contre ordi\n");
-    executeMode(saisieIntTest(1, 5));
+    printf("1 - Mode normal (2 Joueur)\n2 - Jeu contre ordi\n3 - Mode Test\n4 - Charge sav\n");
+    executeMode(saisieIntTest(1, 4));
 }
 
-void afficheFin(partie *partie, int etatFin)
+void afficheFin(partie *pPartie, int i_EtatFin)
 {
-    switch (etatFin)
+    switch (i_EtatFin)
     {
     case 1:
-        printf("\033[%dmVictoire du Joueur %d !\033[0m\n", partie->joueurCourant->couleur, partie->joueurCourant->id);
+        printf("\033[%dmVictoire du Joueur %d !\033[0m\n", pPartie->joueurCourant->couleur, pPartie->joueurCourant->id);
         break;
     case 2:
-        printf("\033[%dmVotre zone de depart contient toujour un de vos pion !!\033[0m\n\n", partie->joueurCourant->couleur);
-        joueurSuivant(partie);
-        printf("\033[%dmVictoire du Joueur %d !\033[0m\n", partie->joueurCourant->couleur, partie->joueurCourant->id);
+        printf("\033[%dmVotre zone de depart contient toujour un de vos pion !!\033[0m\n\n", pPartie->joueurCourant->couleur);
+        joueurSuivant(pPartie);
+        printf("\033[%dmVictoire du Joueur %d !\033[0m\n", pPartie->joueurCourant->couleur, pPartie->joueurCourant->id);
         break;
     case 3:
-        printf("\033[%dmVous êtes inactif depuis 3 tours !!\033[0m\n\n", partie->joueurCourant->couleur);
-        joueurSuivant(partie);
-        printf("\033[%dmVictoire du Joueur %d !\033[0m\n", partie->joueurCourant->couleur, partie->joueurCourant->id);
+        printf("\033[%dmVous êtes inactif depuis 3 tours !!\033[0m\n\n", pPartie->joueurCourant->couleur);
+        joueurSuivant(pPartie);
+        printf("\033[%dmVictoire du Joueur %d !\033[0m\n", pPartie->joueurCourant->couleur, pPartie->joueurCourant->id);
         break;
     default:
         break;

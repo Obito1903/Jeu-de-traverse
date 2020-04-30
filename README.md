@@ -7,8 +7,7 @@ Mini projet "Jeu de traverse".
 ### Compilation
 
 ```shell
-make all
-make clean
+make all && make clean
 ```
 
 pour surpimer aussi l'executable
@@ -32,10 +31,6 @@ La documentation du projet est disponible [ici](https://obito.fr/docs/jeuTravers
 ### Wiki
 
 Le wiki dispinible [ici](Doc/wiki/Wiki.md) nous sert a expliqué comment chaque element du jeu est implementer.
-
-### ToDo
-
-La liste des choses a faire est disponible sur google drive [ici](https://docs.google.com/spreadsheets/d/1IYV29v_tjh2eRqmRmw268CIt3mzgnxHaNbDVMDx6tMY/edit?usp=sharing).
 
 ## Outils
 

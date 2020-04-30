@@ -26,12 +26,11 @@
  *
  *  @brief Alloue l'espace memoire pour une partie
  *
- *  @param[in,out] partie : adresse de la partie a alloué
  *
  */
 partie *allocPartie();
 
-/*
+/**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
  *  @date Mon 27 Apr 2020 17:48

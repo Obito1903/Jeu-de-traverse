@@ -90,7 +90,7 @@ int executeDeplacement(partie *partie, pion *pion, deplacement direction, int es
         deplacePionPlateau(partie, pion, coordArrive);
         estDeplace = 1;
     }
-    else if (sautPossible(partie, coordArrive, direction))
+    else if (testSautPossible(partie, coordArrive, direction))
     {
         coordArrive = convertDirection(coordArrive, direction);
         deplacePionPlateau(partie, pion, coordArrive);

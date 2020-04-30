@@ -8,49 +8,46 @@ Bienvenu sur le wiki du "Jeu de traverse" réaliser par:
 
 ## Structure des données du jeu
 
-Le jeu de traversse necessite de connaitre en permanance l'etat du plateau ainsi que a qui appartien chaque pion et quel est le type de chaque pion.
+Le jeu de traversse nécessite de connaitre en permanance l'état du plateau ainsi que à qui appartien chaque pion et quel est le type de chaque pion.
 
-Ainsi nous avons decidé de stocker l'etat du jeu de cette maniere:
+Ainsi nous avons decidé de stocker l'etat du jeu de cette maniere dans une structure comme celle ci
 
-- Partie
-  - Joueurs : tableau de joueurs
-  - Plateau : tableau a deux dimension qui contient les pions
+```C
+typedef struct
+{
+    /*! tableau de joueur */
+    joueur *joueurs;
+    /*! Plateau de jeu (tableau 2D d'adresse de pion) */
+    pion ***plateau;
+    /*! adresse ver le joueur courant */
+    joueur *joueurCourant;
+    /*! numeros du tour */
+    int tour;
+} partie;
+```
 
-Un a donc un structure contenant un tableau qui stock les donnée la structure de chaque joueur est un tableau à 2 dimension representant le plateau
+On à donc une structure contenant un tableau `joueurs` qui stock une liste de structure de joueur, un tableau a 2 dimension `plateau` qui en chaque case stock sois rien (aucun pion n'est a cette endroit sur le plateau) sois un pointeur vers le pion située en ces coordonées. Le pointeur `joueurCourant` renvoie a l'adresse du joueur courant situé dans le tableau `joueur`. Enfin `tour` qui permet de connaitre le numeros du tour actuel.
 
-### Joueur
+### Structure de Joueur
 
-Commencons par expliqué le tableau de joueur.
+La structure `joueur` nous permet donc de stocker l'état d'un joueur suivant la structure suivante :
 
-Le tableau de joueur contient dans chaque case un structure represantant l'etat d'un joueur comme ceci
+```C
+struct joueur
+{
+    /*! Identifiant du joueur */
+    int id;
+    /*! Adresse vers le tableau contenant les pions du joueur */
+    pion *pions;
+    /*! Adresse vers le tableau contenant les pions du joueur */
+    couleur couleur;
+    /*! Permet de connaitre la zone d'arriver du joueur */
+    facePlateau zoneArr;
+    /*! Permet de connaitre le nombre de tours inactif*/
+    int inactivite;
+};
+```
 
-- Joueurs
-  - joueur 1
-    - id : numeros du joueur
-    - pions : tableau contenant les pion du joueur et leur etat
-    - couleur : couleur du joueur a afficher sur le plateau
-    - zoneArr : l'emplacement de la zone d'arrivé
-  - joueur 2...
+le premier element de la structure `joueur` est l'`id` qui nous permet donc d'identifier le joueur stocker dans cette structure. Ensuite nous avons l'element `pions` qui est un tableau contenant chaque pion sous la forme d'un structure `pion`. Ensuite on a la du joueur qui de type couleur, une énumeration des couleur disponible dans le jeu. De meme pour l'element `zoneArr` qui est une énumeration de chaque coin du plateau (sous forme de direction). Enfin `inactivite` nous permet de compter le nombre de tour consecutif ou le joueur n'a pas bougé de pion.
 
-A l'interieur de la structure de chaque joueur on retrouve donc plein d'information utiles. L'id du joueur (sont utilité sera expliqué plus tard quand on parlera du plateau),
-la liste des pions du joueur qui contient dans chaque case l'etat de chaque pion, Et enfin la couleur du joueur ainsi que ca zone d'arrivé.
-
-#### Pion
-
-Maintenant qu'on sait comment l'etat de chaque joueur est stocker on peut s'interessé a comment l'etat de chaque pion est stocké.
-
-Comme on a pu le voir la liste des pions est stocker a l'interieur de l'etat du joueur cela permet d'acceder facilement au information des pion possedé par le joueur.
-
-la structure d'un pion est donc la suivante: 
-
-- Pion
-  - Proprietere : adresse vers la structure du joueur possedant le pion
-  - Type : type du pion (losange, caré, cercle, triangle)
-  - coordonées : les coordonées du pion sur le plateau
-
-Le fait de stocké l'adresse vers la structure du joueur possedant le pion permet ainsi de pouvoir facilement determiner a qui appartient le pion ainsi que la couleur qu'il doit avoir.
-
-### Plateau
-
-Le plateau de jeu est representé par un tableau a 2 dimension contenant l'addresse des piont placée sur le plateau a la case corespondante. Ainsi si on regarde une case du plateau on a quelque chose de la sorte :
-
+### Structure de Pion

@@ -9,23 +9,6 @@
 
 #include "ai.h"
 
-void ajouteCoup(listeCoupPossiblePion *listeCoupsPion, deplacement direction)
-{
-    listeCoupsPion->Coups[listeCoupsPion->nbCoup] = direction;
-    listeCoupsPion->nbCoup++;
-}
-
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Wed 29 Apr 2020 22:43
- *
- *  @brief 
- *
- *  @param[in]
- *  @return
- *
- */
 listeCoupPossible *allocListeCoupPossbile(void)
 {
     listeCoupPossible *listeCoup = (listeCoupPossible *)malloc(sizeof(listeCoupPossible)); // Variable de retour
@@ -41,16 +24,6 @@ listeCoupPossible *allocListeCoupPossbile(void)
     return listeCoup;
 }
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Thu 30 Apr 2020 22:08
- *
- *  @brief 
- *
- *  @param[in]
- *
- */
 void freeListeCoupPossible(listeCoupPossible *listeCoup)
 {
     int int_pion;
@@ -62,23 +35,36 @@ void freeListeCoupPossible(listeCoupPossible *listeCoup)
     free(listeCoup);
 }
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Wed 29 Apr 2020 22:43
- *
- *  @brief 
- *
- *  @param[in]
- *  @return
- *
- */
 tab *allocListeEval(void)
 {
     tab *listeEval = (tab *)malloc(sizeof(tab));
     listeEval->taille = 0;
     listeEval->tab = NULL;
     return (listeEval);
+}
+
+Coup *creeTabCoup(listeCoupPossible *listeCoups, tab *listeEval)
+{
+    Coup *retour = (Coup *)malloc(sizeof(Coup) * listeEval->taille); // Variable de retour
+
+    int int_pion;
+    for (int_pion = 0; int_pion < NBPIONS; int_pion++)
+    {
+        int int_coup;
+        for (int_coup = 0; int_coup < listeCoups->pions[int_pion].nbCoup; int_coup++)
+        {
+            retour[int_pion + int_coup].int_pion = int_pion;
+            retour[int_pion + int_coup].int_pion = int_coup;
+        }
+    }
+
+    return (retour);
+}
+
+void ajouteListeCoup(listeCoupPossiblePion *listeCoupsPion, deplacement direction)
+{
+    listeCoupsPion->Coups[listeCoupsPion->nbCoup] = direction;
+    listeCoupsPion->nbCoup++;
 }
 
 listeCoupPossible *coupsDisponible(partie *partie)
@@ -93,7 +79,7 @@ listeCoupPossible *coupsDisponible(partie *partie)
         {
             if (coordValide(partie, convertDirection(pion->coord, pion->coupsPossibles.Coups[int_coup])))
             {
-                ajouteCoup(&listeCoups->pions[int_pion], pion->coupsPossibles.Coups[int_coup]);
+                ajouteListeCoup(&listeCoups->pions[int_pion], pion->coupsPossibles.Coups[int_coup]);
                 listeCoups->nbCoups++;
             }
         }
@@ -102,13 +88,7 @@ listeCoupPossible *coupsDisponible(partie *partie)
     return (listeCoups);
 }
 
-partie *appliqueCoup(int int_pion, int int_coup, listeCoupPossible listeCoups, partie *partie)
-{
-    executeDeplacement(partie, &partie->joueurCourant->pions[int_pion], listeCoups.pions[int_pion].Coups[int_coup], 0);
-    return (partie);
-}
-
-void ajouteListe(tab *listeEval, int eval)
+void ajouteListeEval(tab *listeEval, int eval)
 {
     if (listeEval->tab == NULL)
     {
@@ -172,6 +152,12 @@ int minEval(tab *listeEval)
     return (min);
 }
 
+partie *appliqueCoup(int int_pion, int int_coup, listeCoupPossible listeCoups, partie *partie)
+{
+    executeDeplacement(partie, &partie->joueurCourant->pions[int_pion], listeCoups.pions[int_pion].Coups[int_coup], 0);
+    return (partie);
+}
+
 int evalPartie(partie *partie)
 {
     int eval = 0; // Variable de retour
@@ -217,7 +203,7 @@ int MinMax(partie *noeudPartie, int profondeur, int evalMax)
             for (int_coup = 0; int_coup < listeCoups->pions[int_pion].nbCoup; int_coup++)
             {
                 partie *noeudPartieSuivant = copiePartie(noeudPartie);
-                ajouteListe(listeEval, MinMax(appliqueCoup(int_pion, int_coup, *listeCoups, noeudPartieSuivant), profondeur - 1, !evalMax));
+                ajouteListeEval(listeEval, MinMax(appliqueCoup(int_pion, int_coup, *listeCoups, noeudPartieSuivant), profondeur - 1, !evalMax));
                 freePartie(noeudPartieSuivant);
             }
         }
@@ -237,35 +223,6 @@ int MinMax(partie *noeudPartie, int profondeur, int evalMax)
     return (retour);
 }
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Thu 30 Apr 2020 01:25
- *
- *  @brief 
- *
- *  @param[in]
- *  @return
- *
- */
-Coup *creeTabCoup(listeCoupPossible *listeCoups, tab *listeEval)
-{
-    Coup *retour = malloc(sizeof(Coup) * listeEval->taille); // Variable de retour
-
-    int int_pion;
-    for (int_pion = 0; int_pion < NBPIONS; int_pion++)
-    {
-        int int_coup;
-        for (int_coup = 0; int_coup < listeCoups->pions[int_pion].nbCoup; int_coup++)
-        {
-            retour[int_pion + int_coup].int_pion = int_pion;
-            retour[int_pion + int_coup].int_pion = int_coup;
-        }
-    }
-
-    return (retour);
-}
-
 void joueMinMax(partie *noeudPartie)
 {
     listeCoupPossible *listeCoups = coupsDisponible(noeudPartie);
@@ -278,7 +235,7 @@ void joueMinMax(partie *noeudPartie)
         for (int_coup = 0; int_coup < listeCoups->pions[int_pion].nbCoup; int_coup++)
         {
             partie *noeudPartieSuivant = copiePartie(noeudPartie);
-            ajouteListe(listeEval, MinMax(appliqueCoup(int_pion, int_coup, *listeCoups, noeudPartieSuivant), 3, 0));
+            ajouteListeEval(listeEval, MinMax(appliqueCoup(int_pion, int_coup, *listeCoups, noeudPartieSuivant), 3, 0));
             freePartie(noeudPartieSuivant);
         }
     }

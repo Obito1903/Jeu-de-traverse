@@ -9,29 +9,28 @@
 
 #include "jeuBase.h"
 
-int testVictiore(partie *partie)
+int testVictiore(partie *pPartie)
 {
-    int victoire = 1; // Variable de retour
-    joueur *joueur = partie->joueurCourant;
-    int int_i;
+    int bool_Victoire = 1;                    // Variable de retour
+    joueur *pJoueur = pPartie->joueurCourant; // Initialise le joueur a tester au joueur courant
+    int int_i;                                // Itérateur
     for (int_i = 1; int_i < 9; int_i++)
     {
-        if ((partie->plateau[int_i][joueur->zoneArr] == NULL) || (partie->plateau[int_i][joueur->zoneArr]->joueur != joueur))
+        if ((pPartie->plateau[int_i][pJoueur->zoneArr] == NULL) || (pPartie->plateau[int_i][pJoueur->zoneArr]->joueur != pJoueur))
         {
-            victoire = 0;
+            bool_Victoire = 0;
         }
     }
-    int_i++;
-    return (victoire);
+    return (bool_Victoire);
 }
 
-int testNumTour(partie *partie)
+int testNumTour(partie *pPartie)
 {
-    int nonVide = 0; // Variable de retour
-    if (partie->tour == 60 || partie->tour == 61)
+    int bool_nonVide = 0; // Variable de retour
+    if (pPartie->tour == 60 || pPartie->tour == 61)
     {
-        joueur *joueur = partie->joueurCourant;
-        int int_i;
+        joueur *joueur = pPartie->joueurCourant;
+        int int_i; // Itérateur
         facePlateau zone = NORD;
         if (joueur->zoneArr == NORD)
         {
@@ -39,185 +38,160 @@ int testNumTour(partie *partie)
         }
         for (int_i = 1; int_i < 9; int_i++)
         {
-            if (!((partie->plateau[int_i][zone] == NULL) || (partie->plateau[int_i][zone]->joueur != joueur)))
+            if (!((pPartie->plateau[int_i][zone] == NULL) || (pPartie->plateau[int_i][zone]->joueur != joueur)))
             {
-                nonVide = 2;
+                bool_nonVide = 2;
             }
         }
     }
-    return (nonVide);
+    return (bool_nonVide);
 }
 
-int testInactivite(partie *partie)
+int testInactivite(partie *pPartie)
 {
-    int estInactife = 0; // Variable de retour
+    int bool_estInactife = 0; // Variable de retour
 
-    if (partie->joueurCourant->inactivite >= 3)
+    if (pPartie->joueurCourant->inactivite >= 3)
     {
-        estInactife = 3;
+        bool_estInactife = 3;
     }
 
-    return (estInactife);
+    return (bool_estInactife);
 }
 
-void testFin(partie *partie, int *fin)
+void testFin(partie *pPartie, int *i_fin)
 {
-    *fin = testVictiore(partie);
-    *fin = testNumTour(partie);
-    *fin = testInactivite(partie);
+    *i_fin = testVictiore(pPartie);
+    *i_fin = testNumTour(pPartie);
+    *i_fin = testInactivite(pPartie);
 }
 
-void executeTour(partie *partie)
+void executeTour(partie *pPartie)
 {
-    selectionPion(partie);
+    selectionPion(pPartie);
 }
 
-void joueurSuivant(partie *partie)
+void joueurSuivant(partie *pPartie)
 {
-    if (partie->joueurCourant->id == 0)
+    if (pPartie->joueurCourant->id == 0)
     {
-        partie->joueurCourant = &(partie->joueurs[1]);
+        pPartie->joueurCourant = &(pPartie->joueurs[1]);
     }
     else
     {
-        partie->joueurCourant = &(partie->joueurs[0]);
+        pPartie->joueurCourant = &(pPartie->joueurs[0]);
     }
 }
 
-void jouePartie(partie *partie)
+void jouePartie(partie *pPartie)
 {
-    partie->joueurCourant = &(partie->joueurs[0]);
-    int fin = 0;
+    pPartie->joueurCourant = &(pPartie->joueurs[0]);
+    int i_Fin = 0;
     do
     {
-        executeTour(partie);
-        testFin(partie, &fin);
-        printf("inactivité: %d\n", partie->joueurCourant->inactivite);
-        if (!fin)
+        executeTour(pPartie);
+        testFin(pPartie, &i_Fin);
+        printf("inactivité: %d\n", pPartie->joueurCourant->inactivite);
+        if (!i_Fin)
         {
-            joueurSuivant(partie);
-            fin = 0;
+            joueurSuivant(pPartie);
+            i_Fin = 0;
         }
-        partie->tour++;
+        pPartie->tour++;
 
-    } while (!fin);
-    afficheFin(partie, fin);
+    } while (!i_Fin);
+    afficheFin(pPartie, i_Fin);
 }
 
-void jouePartieOrdi(partie *partie)
+void jouePartieOrdi(partie *pPartie)
 {
-    partie->joueurCourant = &(partie->joueurs[0]);
-    int fin = 0;
+    pPartie->joueurCourant = &(pPartie->joueurs[0]);
+    int i_Fin = 0;
     do
     {
-        if (partie->joueurCourant->id == 1)
+        if (pPartie->joueurCourant->id == 1)
         {
-            joueMinMax(partie);
+            joueMinMax(pPartie);
         }
         else
         {
-            executeTour(partie);
+            executeTour(pPartie);
         }
-        testFin(partie, &fin);
-        printf("inactivité: %d\n", partie->joueurCourant->inactivite);
-        if (!fin)
+        testFin(pPartie, &i_Fin);
+        printf("inactivité: %d\n", pPartie->joueurCourant->inactivite);
+        if (!i_Fin)
         {
-            joueurSuivant(partie);
-            fin = 0;
+            joueurSuivant(pPartie);
+            i_Fin = 0;
         }
-        partie->tour++;
+        pPartie->tour++;
 
-    } while (!fin);
-    afficheFin(partie, fin);
+    } while (!i_Fin);
+    afficheFin(pPartie, i_Fin);
 }
 
-void jouePartieOrdivOrdi(partie *partie)
+void executeTest(int i_Mode)
 {
-    partie->joueurCourant = &(partie->joueurs[0]);
-    int fin = 0;
-    do
-    {
-        affichePlateau(partie);
-
-        joueMinMax(partie);
-
-        testFin(partie, &fin);
-        printf("inactivité: %d\n", partie->joueurCourant->inactivite);
-        if (!fin)
-        {
-            joueurSuivant(partie);
-            fin = 0;
-        }
-        partie->tour++;
-        printf("suivant ?\n");
-        getchar();
-    } while (!fin);
-    afficheFin(partie, fin);
-}
-
-void executeTest(int mode, partie *partieTest)
-{
+    partie *p_PartieTest;
     int int_pion;
-    partie *partieCopie = copiePartie(partieTest);
-    switch (mode)
+    switch (i_Mode)
     {
     case 1:
+        p_PartieTest = initPartie();
         for (int_pion = 0; int_pion < 8; int_pion++)
         {
             coord coordPion;
             coordPion.y = 0;
             coordPion.x = int_pion + 1;
-            deplacePionPlateau(partieTest, &(partieTest->joueurs[0].pions[int_pion]), coordPion);
+            deplacePionPlateau(p_PartieTest, &(p_PartieTest->joueurs[0].pions[int_pion]), coordPion);
             coordPion.y = 9;
-            placePion(partieTest, &(partieTest->joueurs[1].pions[int_pion]), coordPion);
+            placePion(p_PartieTest, &(p_PartieTest->joueurs[1].pions[int_pion]), coordPion);
             coordPion.y = 1;
             coordPion.x = 1;
-            deplacePionPlateau(partieTest, &(partieTest->joueurs[0].pions[0]), coordPion);
+            deplacePionPlateau(p_PartieTest, &(p_PartieTest->joueurs[0].pions[0]), coordPion);
             coordPion.y = 8;
             coordPion.x = 1;
-            deplacePionPlateau(partieTest, &(partieTest->joueurs[1].pions[0]), coordPion);
+            deplacePionPlateau(p_PartieTest, &(p_PartieTest->joueurs[1].pions[0]), coordPion);
         }
-        affichePlateau(partieTest);
-        jouePartie(partieTest);
+        affichePlateau(p_PartieTest);
+        jouePartie(p_PartieTest);
+        freePartie(p_PartieTest);
         break;
     case 2:
-        partieTest->tour = 58;
-        jouePartie(partieTest);
-        break;
-    case 3:
-        //affichePlateau(partieTest);
+        p_PartieTest = initPartie();
+        p_PartieTest->tour = 58;
+        jouePartie(p_PartieTest);
+        freePartie(p_PartieTest);
         break;
     default:
         break;
     }
 }
-void executeMode(int mode)
+void executeMode(int i_Mode)
 {
-    partie *partie;
-    switch (mode)
+    partie *pPartie;
+    switch (i_Mode)
     {
     case 1:
-        partie = initPartie();
-        jouePartie(partie);
+        pPartie = initPartie();
+        jouePartie(pPartie);
+        freePartie(pPartie);
         break;
     case 2:
-        partie = initPartie();
-        menuTest(partie);
+        pPartie = initPartie();
+        jouePartieOrdi(pPartie);
+        freePartie(pPartie);
         break;
     case 3:
-        partie = chargeSav();
-        jouePartie(partie);
+        menuTest();
         break;
     case 4:
-        partie = initPartie();
-        jouePartieOrdi(partie);
+        pPartie = chargeSav();
+        jouePartie(pPartie);
+        freePartie(pPartie);
         break;
-    case 5:
-        partie = initPartie();
-        jouePartieOrdivOrdi(partie);
-        break;
+
     default:
         break;
     }
-    freePartie(partie);
 }
