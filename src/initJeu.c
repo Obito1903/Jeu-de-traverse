@@ -11,53 +11,68 @@
 
 partie *allocPartie()
 {
-    partie *partie = malloc(sizeof(partie));
-    partie->plateau = malloc(sizeof(pion **) * TAILLEPLATEAU);
+    partie *partieAlloc = (partie *)malloc(sizeof(partie));
+    if (partieAlloc == NULL)
+    {
+        fprintf(stderr, "Erreur Alloc partie\n");
+        exit(EXIT_FAILURE);
+    }
+    partieAlloc->plateau = (pion ***)malloc(sizeof(pion **) * TAILLEPLATEAU);
+    if (partieAlloc->plateau == NULL)
+    {
+        fprintf(stderr, "Erreur Alloc plateau\n");
+        exit(EXIT_FAILURE);
+    }
     int int_x;
+    int int_y;
     for (int_x = 0; int_x < TAILLEPLATEAU; int_x++)
     {
-        partie->plateau[int_x] = malloc(sizeof(pion *) * TAILLEPLATEAU);
-    }
+        partieAlloc->plateau[int_x] = (pion **)malloc(sizeof(pion *) * TAILLEPLATEAU);
+        if (partieAlloc->plateau[int_x] == NULL)
+        {
+            fprintf(stderr, "Erreur D'alloc plateau\n");
+            exit(EXIT_FAILURE);
+        }
 
-    partie->joueurs = malloc(sizeof(joueur) * NBJOUEUR);
+        for (int_y = 0; int_y < TAILLEPLATEAU; int_y++)
+        {
+            partieAlloc->plateau[int_x][int_y] = NULL;
+        }
+    }
+    partieAlloc->joueurs = (joueur *)malloc(sizeof(joueur) * NBJOUEUR);
     int int_joueur;
     for (int_joueur = 0; int_joueur < NBJOUEUR; int_joueur++)
     {
-        partie->joueurs[int_joueur].pions = malloc(sizeof(pion) * NBPIONS);
+        partieAlloc->joueurs[int_joueur].pions = (pion *)malloc(sizeof(pion) * NBPIONS);
+        int int_pion;
+        for (int_pion = 0; int_pion < NBPIONS; int_pion++)
+        {
+            partieAlloc->joueurs[int_joueur].pions[int_pion].coupsPossibles.Coups = NULL;
+        }
     }
-    return partie;
+    return partieAlloc;
 }
 
 void freePartie(partie *partie)
 {
-    int int_pion;
     int int_joueur;
+    int int_pion;
     for (int_joueur = 0; int_joueur < NBJOUEUR; int_joueur++)
     {
         for (int_pion = 0; int_pion < NBPIONS; int_pion++)
         {
-            printf("Free Coups possible pion %d, joueur %d\n", int_pion, int_joueur);
-            //free(partie->joueurs[int_joueur].pions[int_pion].coupsPossibles.Coups);
-            printf("Free Ok\n");
+            free(partie->joueurs[int_joueur].pions[int_pion].coupsPossibles.Coups);
         }
-        printf("Free tab pion\n");
         free(partie->joueurs[int_joueur].pions);
-        printf("Free Ok\n");
     }
-    printf("Free tab joueur\n");
     free(partie->joueurs);
-    printf("Free Ok\n");
     int int_x;
-    printf("Free plateau\n");
-    for (int_x = 1; int_x < TAILLEPLATEAU; int_x++)
+    for (int_x = 0; int_x < TAILLEPLATEAU; int_x++)
     {
         free(partie->plateau[int_x]);
     }
-    //free(partie->plateau);
-    printf("Free Ok\n");
-    printf("Free Partie general\n");
-    //free(partie);
-    printf("Free Ok\n");
+    free(partie->plateau);
+    free(partie);
 }
 
 typePion defTypePion(int int_i)
@@ -89,7 +104,7 @@ void initDeplacementPion(pion *pion)
     {
     case TRIANGLE:
         pion->coupsPossibles.nbCoup = 3;
-        pion->coupsPossibles.Coups = malloc(sizeof(deplacement) * 3);
+        pion->coupsPossibles.Coups = (deplacement *)malloc(sizeof(deplacement) * 3);
         if (pion->joueur->id == 0)
         {
             pion->coupsPossibles.Coups[0] = D_NORD_EST;
@@ -105,7 +120,7 @@ void initDeplacementPion(pion *pion)
         break;
     case LOSANGE:
         pion->coupsPossibles.nbCoup = 4;
-        pion->coupsPossibles.Coups = malloc(sizeof(deplacement) * 4);
+        pion->coupsPossibles.Coups = (deplacement *)malloc(sizeof(deplacement) * 4);
         pion->coupsPossibles.Coups[0] = D_SUD_EST;
         pion->coupsPossibles.Coups[1] = D_SUD_OUEST;
         pion->coupsPossibles.Coups[2] = D_NORD_EST;
@@ -113,7 +128,7 @@ void initDeplacementPion(pion *pion)
         break;
     case CAREE:
         pion->coupsPossibles.nbCoup = 4;
-        pion->coupsPossibles.Coups = malloc(sizeof(deplacement) * 4);
+        pion->coupsPossibles.Coups = (deplacement *)malloc(sizeof(deplacement) * 4);
         pion->coupsPossibles.Coups[0] = D_SUD;
         pion->coupsPossibles.Coups[1] = D_OUEST;
         pion->coupsPossibles.Coups[2] = D_EST;
@@ -121,7 +136,7 @@ void initDeplacementPion(pion *pion)
         break;
     case CERCLE:
         pion->coupsPossibles.nbCoup = 8;
-        pion->coupsPossibles.Coups = malloc(sizeof(deplacement) * 8);
+        pion->coupsPossibles.Coups = (deplacement *)malloc(sizeof(deplacement) * 8);
         for (int_i = 0; int_i < 8; int_i++)
         {
             pion->coupsPossibles.Coups[int_i] = int_i;
@@ -151,8 +166,8 @@ void initPions(partie *partie, int idJoueur)
         pion.joueur = &(partie->joueurs[idJoueur]);
         coord.x = int_i + 1;
         pion.type = defTypePion(int_i);
-        initDeplacementPion(&pion);
         partie->joueurs[idJoueur].pions[int_i] = pion;
+        initDeplacementPion(&partie->joueurs[idJoueur].pions[int_i]);
         placePion(partie, &partie->joueurs[idJoueur].pions[int_i], coord);
     }
 }
@@ -210,8 +225,10 @@ partie *copiePartie(partie *partieOriginal)
         partiCopie->joueurs[int_joueur].zoneArr = partieOriginal->joueurs[int_joueur].zoneArr;
         for (int_pion = 0; int_pion < NBPIONS; int_pion++)
         {
-            partiCopie->joueurs[int_joueur].pions[int_pion] = partieOriginal->joueurs[int_joueur].pions[int_pion];
+            partiCopie->joueurs[int_joueur].pions[int_pion].type = partieOriginal->joueurs[int_joueur].pions[int_pion].type;
+            partiCopie->joueurs[int_joueur].pions[int_pion].coord = partieOriginal->joueurs[int_joueur].pions[int_pion].coord;
             partiCopie->joueurs[int_joueur].pions[int_pion].joueur = &partiCopie->joueurs[int_joueur];
+            initDeplacementPion(&partiCopie->joueurs[int_joueur].pions[int_pion]);
             placePion(partiCopie, &partiCopie->joueurs[int_joueur].pions[int_pion], partiCopie->joueurs[int_joueur].pions[int_pion].coord);
         }
     }
@@ -223,9 +240,8 @@ partie *copiePartie(partie *partieOriginal)
 
 void sauvegarde(partie *partie)
 {
-    FILE *fichierSauv;
+    FILE *fichierSauv = fopen("./Savs/sav.bin", "wb");
     mkdir("./Savs", 0700);
-    fichierSauv = fopen("./Savs/sav.bin", "wb");
     int int_joueur;
     int int_pion;
     fwrite(&partie->joueurCourant->id, sizeof(int), 1, fichierSauv);
@@ -238,6 +254,7 @@ void sauvegarde(partie *partie)
             fwrite(&partie->joueurs[int_joueur].pions[int_pion], sizeof(pion), 1, fichierSauv);
         }
     }
+    fclose(fichierSauv);
 }
 
 partie *chargeSav(void)
@@ -276,6 +293,6 @@ partie *chargeSav(void)
             placePion(partie, &partie->joueurs[int_joueur].pions[int_pion], partie->joueurs[int_joueur].pions[int_pion].coord);
         }
     }
-
+    fclose(fichierSauv);
     return (partie);
 }

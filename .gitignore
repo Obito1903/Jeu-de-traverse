@@ -4,3 +4,4 @@ jeu
 Savs
 Savs/*
 *.o
+.vscode/tasks.json

@@ -25,7 +25,7 @@ typedef struct
     /*! taille du tableau */
     int nbCoups;
     /*! tableau contenant les coups possibles de chaque pion  */
-    listeCoupPossiblePion pions[NBPIONS];
+    listeCoupPossiblePion *pions;
 } listeCoupPossible;
 
 /**
@@ -39,6 +39,17 @@ typedef struct
     /*! tableau */
     int *tab;
 } tab;
+
+/**
+ * @struct Coup
+ * 
+ */
+typedef struct
+{
+    /*!  */
+    int int_pion;
+    int int_coup;
+} Coup;
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -64,7 +75,7 @@ void ajouteCoup(listeCoupPossiblePion *listeCoupsPion, deplacement direction);
  *  @return la liste des coups possible par un joueur
  *
  */
-listeCoupPossible coupsDisponible(partie *partie);
+listeCoupPossible *coupsDisponible(partie *partie);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -148,5 +159,17 @@ int evalPartie(partie *partie);
  *
  */
 int MinMax(partie *noeudPartie, int profondeur, int evalMax);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Thu 30 Apr 2020 01:13
+ *
+ *  @brief 
+ *
+ *  @param[in]
+ *
+ */
+void joueMinMax(partie *noeudPartie);
 
 #endif // __AI_H__

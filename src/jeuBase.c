@@ -112,7 +112,7 @@ void jouePartieOrdi(partie *partie)
     {
         if (partie->joueurCourant->id == 1)
         {
-            MinMax(partie, 3, 1);
+            joueMinMax(partie);
         }
         else
         {
@@ -127,6 +127,30 @@ void jouePartieOrdi(partie *partie)
         }
         partie->tour++;
 
+    } while (!fin);
+    afficheFin(partie, fin);
+}
+
+void jouePartieOrdivOrdi(partie *partie)
+{
+    partie->joueurCourant = &(partie->joueurs[0]);
+    int fin = 0;
+    do
+    {
+        affichePlateau(partie);
+
+        joueMinMax(partie);
+
+        testFin(partie, &fin);
+        printf("inactivité: %d\n", partie->joueurCourant->inactivite);
+        if (!fin)
+        {
+            joueurSuivant(partie);
+            fin = 0;
+        }
+        partie->tour++;
+        printf("suivant ?\n");
+        getchar();
     } while (!fin);
     afficheFin(partie, fin);
 }
@@ -161,12 +185,7 @@ void executeTest(int mode, partie *partieTest)
         jouePartie(partieTest);
         break;
     case 3:
-        demandeDeplacement(partieTest, &partieTest->joueurCourant->pions[0], 0);
-        demandeDeplacement(partieCopie, &partieCopie->joueurCourant->pions[0], 0);
-        affichePlateau(partieCopie);
-        getchar();
-        affichePlateau(partieTest);
-
+        //affichePlateau(partieTest);
         break;
     default:
         break;
@@ -192,6 +211,10 @@ void executeMode(int mode)
     case 4:
         partie = initPartie();
         jouePartieOrdi(partie);
+        break;
+    case 5:
+        partie = initPartie();
+        jouePartieOrdivOrdi(partie);
         break;
     default:
         break;

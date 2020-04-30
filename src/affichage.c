@@ -58,6 +58,7 @@ void affichePlateau(partie *partie)
 void demandeDeplacement(partie *partie, pion *pion, int estSaut)
 {
     affichePlateau(partie);
+    printf("\033[%dmPion %c(%d,%d)\033[0m\n", partie->joueurCourant->couleur, pion->type, pion->coord.x, pion->coord.y);
     if (estSaut)
     {
         printf("Un saut est disponible, Entré 0 si vous ne voulez pas sautez.\n");
@@ -108,7 +109,7 @@ void menuPrincipale(void)
 {
     printf("Bienvenue sur le jeu de traverse. Quel mode lancer ?\n");
     printf("1 - Mode normal (2 Joueur)\n2 - Mode Test\n3 - Charge sav\n4 - Jeu contre ordi\n");
-    executeMode(saisieIntTest(1, 4));
+    executeMode(saisieIntTest(1, 5));
 }
 
 void afficheFin(partie *partie, int etatFin)
