@@ -25,11 +25,23 @@
  *  @brief Permet d'afficher le plateau
  *
  *  @param[in] pPartie : adresse de la partie à afficher
- * 
+ *
  */
 void affichePlateau(partie *pPartie);
 
 /**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Sat 02 May 2020 20:34
+ *
+ *  @brief Affiche le coups
+ *
+ *  @param[in] coup : coups a afficher
+ *
+ */
+void afficheCoup(deplacement coup)
+
+    /**
  *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Mon 20 Apr 2020 14:32
@@ -41,7 +53,7 @@ void affichePlateau(partie *pPartie);
  *  @param[in,out] bool_EstSaut : permet de savoir si les deplacement fait suite a un saut
  *
  */
-void demandeDeplacement(partie *pPartie, pion *pPion, int bool_EstSaut);
+    void demandeDeplacement(partie *pPartie, pion *pPion, int bool_EstSaut);
 
 /**
  *  @author Théo Paesa <theo.paesa@eisti.eu>
@@ -61,7 +73,7 @@ void selectionPion(partie *pPartie);
  *  @date Sun 26 Apr 2020 16:12
  *
  *  @brief Affiche un menu pour choisir le mode de test
- * 
+ *
  */
 void menuTest();
 

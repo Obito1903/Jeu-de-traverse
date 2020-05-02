@@ -240,8 +240,8 @@ partie *copiePartie(partie *partieOriginal)
 
 void sauvegarde(partie *partie)
 {
-    FILE *fichierSauv = fopen("./Savs/sav.bin", "wb");
     mkdir("./Savs", 0700);
+    FILE *fichierSauv = fopen("./Savs/sav.bin", "wb");
     int int_joueur;
     int int_pion;
     fwrite(&partie->joueurCourant->id, sizeof(int), 1, fichierSauv);
