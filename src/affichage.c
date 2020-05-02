@@ -132,7 +132,7 @@ void selectionPion(partie *partie)
     if (x == -2)
     {
         sauvegarde(partie);
-        fprintf(stdout, "Partie Sauvegarder\n");
+        fprintf(stdout, "Partie Sauvegarder...\n");
         exit(EXIT_SUCCESS);
     }
 }

@@ -42,7 +42,7 @@
 typedef enum
 {
     /*! Pion de type caree */
-    CAREE = 254,
+    CAREE = 67,
     /*! Pion de type triangle */
     TRIANGLE = 65,
     /*! Pion de type losange */
@@ -190,7 +190,7 @@ typedef struct
  *  @date Sun 26 Apr 2020 15:56
  *
  *  @brief test si un des joueurs à gagné
- * 
+ *
  * Test si le joueur courant de la partie a gagné
  * (ie: Tous ces pions sont dans la zone adverse)
  *
