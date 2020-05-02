@@ -55,9 +55,9 @@ void affichePlateau(partie *pPartie)
     printf("\033[%dmJoueur %d :\033[0m\n", pPartie->joueurCourant->couleur, pPartie->joueurCourant->id);
 }
 
-void afficheCoup(deplacement coup)
+void afficheCoup(deplacement *coup)
 {
-    switch (coup)
+    switch (*coup)
     {
     case D_NORD:
         printf("1-NORD\n");
@@ -100,7 +100,7 @@ void demandeDeplacement(partie *pPartie, pion *pPion, int bool_EstSaut)
     printf("Quel direction ?\n");
     for (int_i = 0; int_i < pPion->coupsPossibles.nbCoup; int_i++)
     {
-        afficheCoup(pPion->coupsPossibles.Coups[int_i]);
+        afficheCoup(&pPion->coupsPossibles.Coups[int_i]);
     }
     int direction = saisieIntTest(0, 8);
     if (direction > 0)

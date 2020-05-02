@@ -39,9 +39,9 @@ void affichePlateau(partie *pPartie);
  *  @param[in] coup : coups a afficher
  *
  */
-void afficheCoup(deplacement coup)
+void afficheCoup(deplacement *coup);
 
-    /**
+/**
  *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Mon 20 Apr 2020 14:32
@@ -53,7 +53,7 @@ void afficheCoup(deplacement coup)
  *  @param[in,out] bool_EstSaut : permet de savoir si les deplacement fait suite a un saut
  *
  */
-    void demandeDeplacement(partie *pPartie, pion *pPion, int bool_EstSaut);
+void demandeDeplacement(partie *pPartie, pion *pPion, int bool_EstSaut);
 
 /**
  *  @author Théo Paesa <theo.paesa@eisti.eu>
