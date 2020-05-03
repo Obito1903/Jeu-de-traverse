@@ -1,0 +1,118 @@
+%  Fichier EISTI.sty
+%  Auteur Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+%  Version 0.1
+%  Date Tue Nov 19 11:14:15 2019
+
+%Charger le packer en dernier
+
+\ProvidesPackage{EISTI}[2019/19/10 V0.1]
+
+% Inclue les paquets nécaissaire
+
+\RequirePackage{graphicx}
+\RequirePackage{svg}
+\RequirePackage{geometry}
+\RequirePackage[T1]{fontenc}
+%\RequirePackage[utf8]{inputenc}
+\RequirePackage[french]{babel}
+\RequirePackage{fancyhdr}
+\RequirePackage{color}
+\RequirePackage{amsmath}
+\RequirePackage{hyperref}
+\RequirePackage{listings}
+\RequirePackage{gensymb}
+\RequirePackage{caption}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+%Definie les variables comme le titre le nom du projet et autre...
+
+\newcommand*{\projet}[1]{\gdef\@projet{#1}%
+}
+\newcommand*{\@projet}{Projet}
+\newcommand*{\logo}[1]{\gdef\@logo{#1}%
+}
+\newcommand*{\@logo}{logo}
+\newcommand*{\groupe}[1]{\gdef\@groupe{#1}%
+}
+\newcommand*{\@groupe}{}
+
+% Definie la police par defaut
+
+\renewcommand*\familydefault{\sfdefault}
+
+% Definie la taille des marges
+
+\geometry{a4paper, bottom=20mm, top=20mm,left=25mm,right=25mm}
+
+% Definie la commande \makeEISTI
+
+\newcommand*{\makeEisti}{%
+
+% Definie la page de garde
+
+\begin{titlepage}
+
+\begin{flushright}
+{\large\@author\unskip\strut\par}
+\end{flushright}
+
+\centering
+
+\vspace{5.5cm}
+
+{\Large\@projet\unskip\strut\par}
+\vspace{1cm}
+{\Huge\textbf\@title\unskip\strut\par}
+\vspace{1.5cm}
+{\large \@date\par}
+\vfill
+
+\includesvg[height=5cm]{\@logo}\par
+\vspace{0.5cm}
+{\large École Internationale des Sciences du Traitement de l'Information \par}
+\end{titlepage}
+
+
+
+\tableofcontents
+
+%enlever le header de la toc
+
+\thispagestyle{empty}
+\pagebreak
+}
+
+\newcommand*{\makeEistiHdr}{%
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\@title}
+\fancyhead[R]{\@groupe}
+\fancyfoot[L]{\leftmark}
+\fancyfoot[R]{\thepage}
+
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\makeEisti
+
+}
+
+\endinput
