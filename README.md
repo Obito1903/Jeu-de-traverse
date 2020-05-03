@@ -24,6 +24,10 @@ make cleanall
 
 ## Implementation
 
+### Rapport
+
+[Jeu de traverse](Doc/Latex/Jeu_de_traverse.pdf)
+
 ### Docs
 
 La documentation du projet est disponible [ici](https://obito.fr/docs/jeuTraversse/index.html).
