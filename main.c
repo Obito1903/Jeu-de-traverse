@@ -12,5 +12,6 @@
 int main(int argc, char const *argv[])
 {
     menuPrincipale();
+    printf("prout\n");
     return (0);
 }
