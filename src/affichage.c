@@ -53,6 +53,7 @@ void affichePlateau(partie *pPartie)
     printf("═══╝\n");
     printf("Tour n°%d\n", pPartie->tour / 2);
     printf("\033[%dmJoueur %d :\033[0m\n", pPartie->joueurCourant->couleur, pPartie->joueurCourant->id);
+    printf("%c\n║", 186);
 }
 
 void afficheCoup(deplacement *coup)
